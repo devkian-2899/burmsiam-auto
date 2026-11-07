@@ -83,7 +83,7 @@ a {
 }
 
 .brand-logo {
-  height: clamp(2.4rem, 4vw, 3rem);
+  height: clamp(2.7rem, 4.4vw, 3.5rem);
   width: auto;
 }
 

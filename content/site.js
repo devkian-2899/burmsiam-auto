@@ -8,36 +8,53 @@
 export const site = {
   name: "BurmSiamAuto",
   slogan: "Uniting Automobile Lovers Everywhere",
-  logo: "/logo.svg",
+  // Header mark. The Drive file had a black background, so the site uses a transparent copy.
+logo: "/logo.png",
 
   // A watch link, a youtu.be link, or the 11-character video id.
-  youtube: "",
+  youtube: "https://youtu.be/tBvnHX-5Z6o?si=L6VZdV-k4Q114Sap",
 
   // 3840 × 2160 background behind the slogan and the film.
-  heroBackground: "",
+  heroBackground: "https://drive.google.com/file/d/1rxrcHmpVrsmSwCL1-qWVBtLzXMlRYxJ9/view?usp=drive_link",
 
   // Up to 4 photos, 3840 × 2160. href opens in a new tab once the photo has settled.
   slides: [
-    { image: "", href: "", title: "Latest story 1" },
-    { image: "", href: "", title: "Latest story 2" },
-    { image: "", href: "", title: "Latest story 3" },
-    { image: "", href: "", title: "Latest story 4" },
+    {
+      image: "https://drive.google.com/file/d/18y4OQioEiANscQTvpxPYIykZIOCEFC4R/view?usp=drive_link",
+      href: "",
+      title: "Latest story 1",
+    },
+    {
+      image: "https://drive.google.com/file/d/1ZssA1Rmwo9c0aNpuU16BAYHYYh9SnIca/view?usp=drive_link",
+      href: "",
+      title: "Latest story 2",
+    },
+    {
+      image: "https://drive.google.com/file/d/1k_QXuWaFVEMDeGBFnOyMUvjIy11gD2UO/view?usp=drive_link",
+      href: "",
+      title: "Latest story 3",
+    },
+    {
+      image: "https://drive.google.com/file/d/1hqLBg3ad5astwtQn1i6Kdc_xZF4SJXSY/view?usp=drive_link",
+      href: "",
+      title: "Latest story 4",
+    },
   ],
 
   // 12 icons, 1080 × 1080. They are not links in this version.
   programs: [
-    { image: "", name: "Program 1" },
-    { image: "", name: "Program 2" },
-    { image: "", name: "Program 3" },
-    { image: "", name: "Program 4" },
-    { image: "", name: "Program 5" },
-    { image: "", name: "Program 6" },
-    { image: "", name: "Program 7" },
-    { image: "", name: "Program 8" },
-    { image: "", name: "Program 9" },
-    { image: "", name: "Program 10" },
-    { image: "", name: "Program 11" },
-    { image: "", name: "Program 12" },
+    { image: "https://drive.google.com/file/d/1yapvYUWm9_PiPk2tmDI-6VgS-_v-GB31/view?usp=drive_link", name: "Program 1" },
+    { image: "https://drive.google.com/file/d/1bFaw2TvvZ8rg0FyHmZlRjiynL7GMFmcm/view?usp=drive_link", name: "Program 2" },
+    { image: "https://drive.google.com/file/d/1PI4tuUJ0JMT1VHNQlbWvygzTWQy13Vbu/view?usp=drive_link", name: "Program 3" },
+    { image: "https://drive.google.com/file/d/1zKMzcEGqCpiRb-Bx32KnuAy99N1Zqzu3/view?usp=drive_link", name: "Program 4" },
+    { image: "https://drive.google.com/file/d/14WqY8cQy1YItcqSX03ullEtZee9pjyOl/view?usp=drive_link", name: "Program 5" },
+    { image: "https://drive.google.com/file/d/1zqdzvpD039AtCbfiATRt24F5ICGiuhPP/view?usp=drive_link", name: "Program 6" },
+    { image: "https://drive.google.com/file/d/1O3-UyfTG3Ws_0RMudLdH24v3eCHeQTyR/view?usp=drive_link", name: "Program 7" },
+    { image: "https://drive.google.com/file/d/1CQjI9tTOK9Q2MJ_2EqU9-cvAzx1qFs0n/view?usp=drive_link", name: "Program 8" },
+    { image: "https://drive.google.com/file/d/1oS7x_knkxCCgrM1k032AjC6JP9T4Bi9_/view?usp=drive_link", name: "Program 9" },
+    { image: "https://drive.google.com/file/d/1TBiZbdIFEjZz5huPAyrVjKt1lL3RaTQ4/view?usp=drive_link", name: "Program 10" },
+    { image: "https://drive.google.com/file/d/11yZv85QmN28DWCGiwPuXdZXW1hbOm04m/view?usp=drive_link", name: "Program 11" },
+    { image: "https://drive.google.com/file/d/10tLfW5qoSxcE6DvedF_9QJRogcxd2uOr/view?usp=drive_link", name: "Program 12" },
   ],
 
   contact: {

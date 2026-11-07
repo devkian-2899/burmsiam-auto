@@ -24,7 +24,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header name={site.name} logo={site.logo} />
+      <Header name={site.name} logo={driveSources(site.logo, [240, 480]).src} />
       <main>
         <Hero
           slogan={site.slogan}
