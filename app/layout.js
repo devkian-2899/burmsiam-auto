@@ -1,20 +1,21 @@
-import { Geist } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-outfit",
 });
 
 export const metadata = {
-  title: "Hello World",
-  description: "Automobile media site. Hello World setup.",
+  title: "BurmSiamAuto",
+  description: "Uniting Automobile Lovers Everywhere",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+    <html lang="en" className={outfit.variable}>
+      <body>{children}</body>
     </html>
   );
 }

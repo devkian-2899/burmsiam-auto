@@ -1,9 +1,42 @@
-export default function Home() {
+import { About } from "../components/about";
+import { Contact } from "../components/contact";
+import { Footer } from "../components/footer";
+import { Header } from "../components/header";
+import { Hero } from "../components/hero";
+import { Latest } from "../components/latest";
+import { Programs } from "../components/programs";
+import { site } from "../content/site";
+import { driveSources, youtubeId } from "../lib/media.mjs";
+
+export default function HomePage() {
+  const slides = site.slides
+    .filter((slide) => String(slide.image || "").trim())
+    .map((slide) => ({
+      title: slide.title,
+      href: String(slide.href || "").trim(),
+      image: driveSources(slide.image, [1280, 1920, 2560, 3840]),
+    }));
+
+  const programs = site.programs.map((item, index) => ({
+    name: item.name || `Program ${index + 1}`,
+    image: driveSources(item.image, [480, 720, 1080]),
+  }));
+
   return (
-    <main className="flex flex-1 items-center justify-center px-6">
-      <h1 className="text-center text-4xl font-semibold tracking-tight sm:text-5xl">
-        Hello World
-      </h1>
-    </main>
+    <>
+      <Header name={site.name} logo={site.logo} />
+      <main>
+        <Hero
+          slogan={site.slogan}
+          youtubeId={youtubeId(site.youtube)}
+          background={driveSources(site.heroBackground, [1280, 1920, 2560, 3840])}
+        />
+        <About />
+        <Latest slides={slides} />
+        <Programs items={programs} />
+        <Contact contact={site.contact} />
+      </main>
+      <Footer />
+    </>
   );
 }
