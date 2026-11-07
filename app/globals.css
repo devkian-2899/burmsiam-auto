@@ -341,8 +341,8 @@ a {
 }
 
 .programs {
-  background: var(--paper);
-  color: var(--text-on-paper);
+  background: transparent;
+  color: var(--ink);
   scroll-margin-top: var(--header);
 }
 
@@ -365,14 +365,15 @@ a {
 
 .program-card {
   aspect-ratio: 1;
-  background: #e7e7e7;
+  background: transparent;
   overflow: hidden;
 }
 
 .program-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  mix-blend-mode: lighten;
 }
 
 .contact {
