@@ -42,7 +42,7 @@ export function Contact({ contact }) {
       label: contact.moreLabel,
       text: contact.moreLabel,
       icon: <IconLink />,
-      external: true,
+      external: false,
     },
   ];
 

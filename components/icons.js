@@ -66,6 +66,15 @@ export function IconTikTok() {
   );
 }
 
+export function IconSite() {
+  return (
+    <Icon>
+      <circle cx="12" cy="12" r="8" {...stroke} />
+      <path d="M4 12h16M12 4c2.2 2.4 3.2 5 3.2 8s-1 5.6-3.2 8c-2.2-2.4-3.2-5-3.2-8s1-5.6 3.2-8z" {...stroke} />
+    </Icon>
+  );
+}
+
 export function IconLink() {
   return (
     <Icon>

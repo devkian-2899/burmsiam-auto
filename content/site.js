@@ -67,7 +67,54 @@ export const site = {
     youtubeHandle: "@burmsiamauto",
     tiktok: "https://www.tiktok.com/@burmsiamauto",
     tiktokHandle: "@burmsiamauto",
-    more: "https://linktr.ee/burmsiamauto",
+    more: "/exploreus",
     moreLabel: "Explore More With Us",
   },
 };
+
+// The /exploreus link collection. Social addresses that already live above
+// stay in contact. Origin and Kids use the same @burmsiam handle style.
+export const exploreLinks = [
+  {
+    name: "BurmSiamOrigin",
+    hint: "YouTube",
+    href: "https://www.youtube.com/@burmsiamorigin",
+    kind: "youtube",
+  },
+  {
+    name: "BurmSiamAuto",
+    hint: "YouTube",
+    href: "https://www.youtube.com/@burmsiamauto",
+    kind: "youtube",
+  },
+  {
+    name: "Instagram",
+    hint: "@burmsiamauto",
+    href: "https://www.instagram.com/burmsiamauto/",
+    kind: "instagram",
+  },
+  {
+    name: "Facebook",
+    hint: "@burmsiamautomobile",
+    href: "https://www.facebook.com/burmsiamautomobile",
+    kind: "facebook",
+  },
+  {
+    name: "TikTok",
+    hint: "@burmsiamauto",
+    href: "https://www.tiktok.com/@burmsiamauto",
+    kind: "tiktok",
+  },
+  {
+    name: "BurmSiam Kids",
+    hint: "YouTube",
+    href: "https://www.youtube.com/@burmsiamkids",
+    kind: "youtube",
+  },
+  {
+    name: "BurmSiam Website",
+    hint: "burmsiamauto.com",
+    href: "/",
+    kind: "site",
+  },
+];
