@@ -151,7 +151,24 @@ a {
   object-fit: contain;
   object-position: center;
   opacity: 0;
+  filter: saturate(0.9);
   transition: opacity 1.6s ease-in-out;
+}
+
+.hero-bg:nth-child(1) {
+  filter: brightness(1.08) saturate(0.92);
+}
+
+.hero-bg:nth-child(2) {
+  filter: brightness(0.7) saturate(0.86);
+}
+
+.hero-bg:nth-child(3) {
+  filter: brightness(0.62) saturate(0.84);
+}
+
+.hero-bg:nth-child(4) {
+  filter: brightness(0.66) saturate(0.86);
 }
 
 .hero-bg.is-active {
@@ -162,7 +179,9 @@ a {
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(7, 20, 22, 0.82) 0%, rgba(7, 20, 22, 0.28) 46%, rgba(7, 20, 22, 0.62) 100%);
+  background:
+    linear-gradient(180deg, rgba(5, 24, 28, 0.42), rgba(8, 46, 50, 0.2) 40%, rgba(4, 18, 22, 0.48)),
+    rgba(10, 68, 74, 0.42);
 }
 
 .hero-inner {
@@ -600,10 +619,6 @@ a {
     align-items: center;
     justify-content: center;
     gap: 0.28rem;
-  }
-
-  .hero-shade {
-    background: linear-gradient(180deg, rgba(7, 20, 22, 0.78), rgba(7, 20, 22, 0.28) 42%, rgba(7, 20, 22, 0.78));
   }
 
   .hero-inner {
