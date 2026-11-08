@@ -15,7 +15,7 @@ export const site = {
   youtube: "https://youtu.be/tBvnHX-5Z6o?si=L6VZdV-k4Q114Sap",
 
   // 3840 × 2160 background behind the slogan and the film.
-  heroBackground: "https://drive.google.com/file/d/1HGIHHsdw98P3XCvJphLXtEXHaFlgsXK_/view?usp=drive_link",
+  heroBackground: "/images/poster/cover.png",
 
   // Up to 4 photos, 3840 × 2160. href opens in a new tab once the photo has settled.
   slides: [
