@@ -10,6 +10,10 @@ const outfit = Outfit({
 export const metadata = {
   title: "BurmSiamAuto",
   description: "Uniting Automobile Lovers Everywhere",
+  icons: {
+    icon: [{ url: "/images/main/bsicon.png", type: "image/png" }],
+    apple: "/images/main/bsicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {

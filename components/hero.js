@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const HOLD_MS = 7000;
+const FADE_MS = 1600;
 
 export function Hero({ slogan, youtubeId, covers }) {
   const images = (covers || []).filter((src) => String(src || "").trim());
@@ -10,6 +11,7 @@ export function Hero({ slogan, youtubeId, covers }) {
     ? `https://www.youtube-nocookie.com/embed/${youtubeId}`
     : "";
   const [index, setIndex] = useState(0);
+  const [base, setBase] = useState(0);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
@@ -28,6 +30,12 @@ export function Hero({ slogan, youtubeId, covers }) {
     return () => clearInterval(timer);
   }, [reduced, images.length]);
 
+  useEffect(() => {
+    if (base === index) return undefined;
+    const timer = setTimeout(() => setBase(index), FADE_MS);
+    return () => clearTimeout(timer);
+  }, [base, index]);
+
   return (
     <section id="home" className="hero">
       <div className="hero-slides" aria-hidden="true">
@@ -37,7 +45,11 @@ export function Hero({ slogan, youtubeId, covers }) {
             key={src}
             src={src}
             alt=""
-            className={position === index ? "hero-bg is-active" : "hero-bg"}
+            className={[
+              "hero-bg",
+              position === base ? "is-base" : "",
+              position === index ? "is-active" : "",
+            ].filter(Boolean).join(" ")}
             draggable="false"
           />
         ))}
@@ -46,12 +58,11 @@ export function Hero({ slogan, youtubeId, covers }) {
       <div className="hero-inner">
         <h1 className="slogan">{slogan}</h1>
         <div className="player-block">
-          <p className="episode-label">Recent Episode</p>
           <div className="player">
             {embed ? (
               <iframe
                 src={embed}
-                title="Recent episode"
+                title="BurmSiamAuto film"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 referrerPolicy="strict-origin-when-cross-origin"

@@ -171,6 +171,12 @@ a {
   filter: brightness(0.66) saturate(0.86);
 }
 
+.hero-bg.is-base {
+  z-index: 0;
+  opacity: 1;
+  transition: none;
+}
+
 .hero-bg.is-active {
   z-index: 1;
   opacity: 1;
@@ -208,16 +214,6 @@ a {
 .player-block {
   width: min(100%, 46rem);
   justify-self: end;
-}
-
-.episode-label {
-  margin: 0 0 0.75rem;
-  color: var(--cyan);
-  font-size: clamp(0.72rem, 1vw, 0.86rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-align: right;
-  text-transform: uppercase;
 }
 
 .player {
@@ -637,10 +633,6 @@ a {
   .player-block {
     width: min(58%, 22rem);
     justify-self: center;
-  }
-
-  .episode-label {
-    text-align: center;
   }
 
   .latest-nav {
