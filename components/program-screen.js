@@ -6,8 +6,8 @@ import { Photo } from "./photo";
 
 const links = [
   { href: "/#home", label: "HOME" },
-  { href: "/#about", label: "About Us" },
-  { href: "/#latest", label: "EXPLORE THE LATEST" },
+  { href: "/#aboutus", label: "ABOUT" },
+  { href: "/#latest", label: "EXPLORE THE LATEST", soon: true },
   { href: "/#programs", label: "OUR PROGRAMS" },
   { href: "/#contact", label: "CONTACT US" },
 ];
@@ -73,9 +73,16 @@ export function ProgramScreen({ name, icon, logo, volumes }) {
           <nav id="program-menu" className="site-menu">
             <p className="menu-title">{name}</p>
             {links.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
-                {link.label}
-              </Link>
+              link.soon ? (
+                <p key={link.label} className="menu-soon">
+                  {link.label}
+                  <small>[Coming Soon...]</small>
+                </p>
+              ) : (
+                <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
         ) : null}

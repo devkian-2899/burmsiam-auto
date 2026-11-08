@@ -8,6 +8,9 @@ import { Programs } from "../components/programs";
 import { site } from "../content/site";
 import { driveSources, youtubeId } from "../lib/media.mjs";
 
+// The Explore the Latest slider stays in the project. It is off on the home page for now.
+const showLatest = false;
+
 export default function HomePage() {
   const slides = site.slides
     .filter((slide) => String(slide.image || "").trim())
@@ -26,7 +29,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header name={site.name} logo={site.logo} />
+      <Header name={site.name} logo={site.headerLogo} />
       <main>
         <Hero
           slogan={site.slogan}
@@ -34,7 +37,7 @@ export default function HomePage() {
           covers={site.covers}
         />
         <About />
-        <Latest slides={slides} />
+        {showLatest ? <Latest slides={slides} /> : null}
         <Programs items={programs} />
         <Contact contact={site.contact} />
       </main>

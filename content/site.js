@@ -8,8 +8,9 @@
 export const site = {
   name: "BurmSiamAuto",
   slogan: "Uniting Automobile Lovers Everywhere",
-  // Header mark. Transparent PNG in public/images/main.
+  // Explore page mark. The header uses the white mark below.
   logo: "/images/main/logos.png",
+  headerLogo: "/images/main/logow.png",
 
   // A watch link, a youtu.be link, or the 11-character video id.
   youtube: "https://youtu.be/tBvnHX-5Z6o?si=L6VZdV-k4Q114Sap",

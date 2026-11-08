@@ -9,7 +9,7 @@ export function ProgramPage({ name }) {
       <ProgramScreen
         name={name}
         icon={`/images/programs/${name}.png`}
-        logo={site.logo}
+        logo={site.headerLogo}
         volumes={volumesFor(name)}
       />
       <Footer />

@@ -15,7 +15,7 @@ const blocks = [
 
 export function About() {
   return (
-    <section id="about" className="about">
+    <section id="aboutus" className="about">
       <div className="about-inner">
         {blocks.map((block) => (
           <article key={block.title}>
