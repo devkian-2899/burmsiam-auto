@@ -8,8 +8,8 @@
 export const site = {
   name: "BurmSiamAuto",
   slogan: "Uniting Automobile Lovers Everywhere",
-  // Header mark. The Drive file had a black background, so the site uses a transparent copy.
-logo: "/logo.png",
+  // Header mark. Transparent PNG in public/images/main.
+  logo: "/images/main/logos.png",
 
   // A watch link, a youtu.be link, or the 11-character video id.
   youtube: "https://youtu.be/tBvnHX-5Z6o?si=L6VZdV-k4Q114Sap",
