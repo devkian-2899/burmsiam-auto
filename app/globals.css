@@ -386,19 +386,127 @@ a {
   mix-blend-mode: normal;
 }
 
-.program-page {
-  display: grid;
-  min-height: 100dvh;
-  place-items: center;
-  background: none;
+.program-top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  height: var(--header);
+  padding: 0 clamp(1.1rem, 3vw, 2.5rem);
+  background: var(--night);
+  border-bottom: 1px solid var(--line);
 }
 
-.program-page h1 {
-  margin: 0;
+.program-back {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
   color: var(--ink);
-  font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.program-back svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.program-mark {
+  width: 2.8rem;
+  height: 2.8rem;
+  object-fit: contain;
+}
+
+.program-brand {
+  display: flex;
+  margin-left: auto;
+}
+
+.program-stage {
+  width: min(980px, 100%);
+  margin-inline: auto;
+  padding: clamp(1rem, 3vw, 2rem) clamp(0.85rem, 3vw, 1.4rem) 2.75rem;
+}
+
+.program-empty {
+  margin: 2rem 0;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.volume {
+  margin-top: 1.15rem;
+  border: 2px solid var(--cyan);
+  background: transparent;
+}
+
+.volume-heading {
+  margin: 0;
+}
+
+.volume-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.1rem;
+  padding: 0.75rem 2.8rem;
+  border: 0;
+  background: var(--cyan);
+  color: var(--text-on-paper);
+  font: inherit;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.volume-chevron {
+  position: absolute;
+  right: 0.9rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  transform: rotate(0deg);
+}
+
+.volume.is-open .volume-chevron {
+  transform: rotate(90deg);
+}
+
+.episode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  padding: 0.9rem;
+}
+
+.episode-card {
+  background: var(--paper);
+  color: var(--text-on-paper);
+}
+
+.episode-photo {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.episode-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.episode-card h3 {
+  margin: 0;
+  padding: 0.95rem 0.7rem 1.05rem;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  text-align: center;
 }
 
 .contact {
@@ -529,6 +637,42 @@ a {
     scroll-snap-align: center;
   }
 
+  .program-top {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr 2.75rem;
+    justify-items: center;
+  }
+
+  .program-back {
+    display: flex;
+    justify-self: start;
+  }
+
+  .program-brand {
+    display: none;
+  }
+
+  .program-mark {
+    justify-self: center;
+  }
+
+  .program-menu {
+    margin-left: 0;
+    justify-self: end;
+  }
+
+  .volume-toggle {
+    cursor: pointer;
+  }
+
+  .episode-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .volume:not(.is-open) .episode-grid {
+    display: none;
+  }
+
   .contact h2,
   .contact a span {
     display: none;
@@ -547,6 +691,20 @@ a {
   .icon {
     width: 1.7rem;
     height: 1.7rem;
+  }
+}
+
+@media (min-width: 861px) {
+  .volume-toggle {
+    pointer-events: none;
+  }
+
+  .volume-chevron {
+    display: none;
+  }
+
+  .volume .episode-grid {
+    display: grid;
   }
 }
 
