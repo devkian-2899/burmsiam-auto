@@ -131,11 +131,16 @@ a {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: calc(100dvh - var(--header));
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 20% 40%, rgba(88, 227, 227, 0.18), transparent 46%),
-    var(--night);
+  background: var(--night);
+}
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .hero-bg {
@@ -143,7 +148,15 @@ a {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.6s ease-in-out;
+}
+
+.hero-bg.is-active {
+  z-index: 1;
+  opacity: 1;
 }
 
 .hero-shade {
@@ -156,18 +169,18 @@ a {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(16rem, 1fr);
-  gap: clamp(1.5rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1rem, 3vw, 3rem);
   align-items: center;
   width: min(1440px, 100%);
   margin-inline: auto;
-  padding: clamp(2.5rem, 7vw, 6.5rem) clamp(1.25rem, 4vw, 4rem);
+  padding: clamp(1.25rem, 4vw, 3.25rem) clamp(1.25rem, 4vw, 4rem);
 }
 
 .slogan {
   margin: 0;
-  max-width: 11ch;
-  font-size: clamp(2.4rem, 4.8vw, 5rem);
+  max-width: 12ch;
+  font-size: clamp(1.7rem, 3.6vw, 4.4rem);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.035em;
@@ -596,14 +609,18 @@ a {
   .hero-inner {
     grid-template-columns: 1fr;
     justify-items: center;
+    gap: 0.45rem;
     text-align: center;
+    padding: 0.7rem 0.85rem;
   }
 
   .slogan {
-    max-width: 14ch;
+    max-width: 18ch;
+    font-size: clamp(0.95rem, 3.5vw, 1.7rem);
   }
 
   .player-block {
+    width: min(58%, 22rem);
     justify-self: center;
   }
 
@@ -1038,7 +1055,8 @@ a {
   .explore-link,
   .explore-logo,
   .explore-road,
-  .explore-sound-lamp {
+  .explore-sound-lamp,
+  .hero-bg {
     animation: none;
     transition: none;
   }

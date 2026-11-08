@@ -31,7 +31,7 @@ export default function HomePage() {
         <Hero
           slogan={site.slogan}
           youtubeId={youtubeId(site.youtube)}
-          background={driveSources(site.heroBackground, [1280, 1920, 2560, 3840])}
+          covers={site.covers}
         />
         <About />
         <Latest slides={slides} />

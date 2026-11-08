@@ -14,8 +14,13 @@ export const site = {
   // A watch link, a youtu.be link, or the 11-character video id.
   youtube: "https://youtu.be/tBvnHX-5Z6o?si=L6VZdV-k4Q114Sap",
 
-  // 3840 × 2160 background behind the slogan and the film.
-  heroBackground: "/images/poster/cover.png",
+  // 16:9 covers behind the slogan and the film. They crossfade on their own.
+  covers: [
+    "/images/covers/cover-1.jpg",
+    "/images/covers/cover-2.jpg",
+    "/images/covers/cover-3.jpg",
+    "/images/covers/cover-4.jpg",
+  ],
 
   // Up to 4 photos, 3840 × 2160. href opens in a new tab once the photo has settled.
   slides: [
