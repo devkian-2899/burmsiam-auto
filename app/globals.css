@@ -341,7 +341,7 @@ a {
 }
 
 .programs {
-  background: transparent;
+  background: none;
   color: var(--ink);
   scroll-margin-top: var(--header);
 }
@@ -365,18 +365,17 @@ a {
 
 .program-card {
   aspect-ratio: 1;
-  background: transparent;
-  overflow: hidden;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .program-photo {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  mix-blend-mode: lighten;
-}
-
-.program-photo.is-plain {
+  background: none;
   mix-blend-mode: normal;
 }
 

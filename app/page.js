@@ -19,8 +19,8 @@ export default function HomePage() {
 
   const programs = site.programs.map((item, index) => ({
     name: item.name || `Program ${index + 1}`,
-    plain: Boolean(item.plain),
-    image: driveSources(item.image, [480, 720, 1080]),
+    // Drive turns these PNGs into black-backed JPEGs at 540px and below.
+    image: driveSources(item.image, [720, 1080]),
   }));
 
   return (

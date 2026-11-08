@@ -15,46 +15,46 @@ logo: "/logo.png",
   youtube: "https://youtu.be/tBvnHX-5Z6o?si=L6VZdV-k4Q114Sap",
 
   // 3840 × 2160 background behind the slogan and the film.
-  heroBackground: "https://drive.google.com/file/d/1rxrcHmpVrsmSwCL1-qWVBtLzXMlRYxJ9/view?usp=drive_link",
+  heroBackground: "https://drive.google.com/file/d/1HGIHHsdw98P3XCvJphLXtEXHaFlgsXK_/view?usp=drive_link",
 
   // Up to 4 photos, 3840 × 2160. href opens in a new tab once the photo has settled.
   slides: [
     {
-      image: "https://drive.google.com/file/d/18y4OQioEiANscQTvpxPYIykZIOCEFC4R/view?usp=drive_link",
+      image: "https://drive.google.com/file/d/1jG5Ff1Bb5-j2EaB_vtfKz0hD_Qfb3EXL/view?usp=drive_link",
       href: "",
       title: "Latest story 1",
     },
     {
-      image: "https://drive.google.com/file/d/1ZssA1Rmwo9c0aNpuU16BAYHYYh9SnIca/view?usp=drive_link",
+      image: "https://drive.google.com/file/d/1KP6yVWNCp4VigJCMePSfSkc8qlVMJapy/view?usp=drive_link",
       href: "",
       title: "Latest story 2",
     },
     {
-      image: "https://drive.google.com/file/d/1k_QXuWaFVEMDeGBFnOyMUvjIy11gD2UO/view?usp=drive_link",
+      image: "https://drive.google.com/file/d/10dfn1C6UovobKpIa9_PGBW1fy9B17CYS/view?usp=drive_link",
       href: "",
       title: "Latest story 3",
     },
     {
-      image: "https://drive.google.com/file/d/1hqLBg3ad5astwtQn1i6Kdc_xZF4SJXSY/view?usp=drive_link",
+      image: "https://drive.google.com/file/d/1HGIHHsdw98P3XCvJphLXtEXHaFlgsXK_/view?usp=drive_link",
       href: "",
       title: "Latest story 4",
     },
   ],
 
-  // 12 icons, 1080 × 1080. They are not links in this version.
+  // 12 PNG icons, 1080 × 1080, with no background. They are not links in this version.
   programs: [
-    { image: "https://drive.google.com/file/d/1yapvYUWm9_PiPk2tmDI-6VgS-_v-GB31/view?usp=drive_link", name: "Program 1" },
-    { image: "https://drive.google.com/file/d/1bFaw2TvvZ8rg0FyHmZlRjiynL7GMFmcm/view?usp=drive_link", name: "Program 2" },
-    { image: "https://drive.google.com/file/d/1PI4tuUJ0JMT1VHNQlbWvygzTWQy13Vbu/view?usp=drive_link", name: "Program 3" },
-    { image: "https://drive.google.com/file/d/1zKMzcEGqCpiRb-Bx32KnuAy99N1Zqzu3/view?usp=drive_link", name: "Program 4" },
-    { image: "https://drive.google.com/file/d/14WqY8cQy1YItcqSX03ullEtZee9pjyOl/view?usp=drive_link", name: "Program 5" },
-    { image: "https://drive.google.com/file/d/1zqdzvpD039AtCbfiATRt24F5ICGiuhPP/view?usp=drive_link", name: "Program 6" },
-    { image: "https://drive.google.com/file/d/1O3-UyfTG3Ws_0RMudLdH24v3eCHeQTyR/view?usp=drive_link", name: "Program 7" },
-    { image: "https://drive.google.com/file/d/1CQjI9tTOK9Q2MJ_2EqU9-cvAzx1qFs0n/view?usp=drive_link", name: "Program 8" },
-    { image: "https://drive.google.com/file/d/1oS7x_knkxCCgrM1k032AjC6JP9T4Bi9_/view?usp=drive_link", name: "Program 9" },
-    { image: "https://drive.google.com/file/d/1TBiZbdIFEjZz5huPAyrVjKt1lL3RaTQ4/view?usp=drive_link", name: "Program 10" },
-    { image: "https://drive.google.com/file/d/11yZv85QmN28DWCGiwPuXdZXW1hbOm04m/view?usp=drive_link", name: "Program 11" },
-    { image: "https://drive.google.com/file/d/1XKTbkJsshVa3h2-t7Uuws7ch7nbHpvQz/view?usp=drive_link", name: "Program 12", plain: true },
+    { image: "https://drive.google.com/file/d/1dbl-MTFZmXPK_QLqTBlPBIp1gqIal_y8/view?usp=drive_link", name: "Program 1" },
+    { image: "https://drive.google.com/file/d/1j_d5RSNn3QLrDxeGQjfRG_vm1P7BAUzf/view?usp=drive_link", name: "Program 2" },
+    { image: "https://drive.google.com/file/d/1zuKcbBnyZFjnA9xo3t8mc61I_rnxIBuI/view?usp=drive_link", name: "Program 3" },
+    { image: "https://drive.google.com/file/d/1Y0kBuBn0rUIAhH4rFIjhii2wFcCJz_bD/view?usp=drive_link", name: "Program 4" },
+    { image: "https://drive.google.com/file/d/1iT50iyM7aUgXbx_Eve5z12mfvap9_YQx/view?usp=drive_link", name: "Program 5" },
+    { image: "https://drive.google.com/file/d/1G_JQP59b1QsuqZcYeX1uEgG8qDwfM--c/view?usp=drive_link", name: "Program 6" },
+    { image: "https://drive.google.com/file/d/15PGSFThLqcSBTYrfAWphaa15YedbzkY5/view?usp=drive_link", name: "Program 7" },
+    { image: "https://drive.google.com/file/d/1yCS68essMY5WTJmHfpuRGx5fPFuMMBjQ/view?usp=drive_link", name: "Program 8" },
+    { image: "https://drive.google.com/file/d/1NBlFsi_3hNr9KN7DSXv78vLpE6zdek4I/view?usp=drive_link", name: "Program 9" },
+    { image: "https://drive.google.com/file/d/16fR_KS1i7JXzUWZfFsVTAAefqQAerlb4/view?usp=drive_link", name: "Program 10" },
+    { image: "https://drive.google.com/file/d/1HUhQs3mMv1beT1SxldgST8U1SRGDvo-q/view?usp=drive_link", name: "Program 11" },
+    { image: "https://drive.google.com/file/d/1iVym4QYo7DMCVGtj3WlfQCf57j5UAoJO/view?usp=drive_link", name: "Program 12" },
   ],
 
   contact: {
