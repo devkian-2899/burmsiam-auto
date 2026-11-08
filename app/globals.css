@@ -376,6 +376,10 @@ a {
   mix-blend-mode: lighten;
 }
 
+.program-photo.is-plain {
+  mix-blend-mode: normal;
+}
+
 .contact {
   background: var(--night-3);
   scroll-margin-top: var(--header);

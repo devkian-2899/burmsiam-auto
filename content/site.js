@@ -54,7 +54,7 @@ logo: "/logo.png",
     { image: "https://drive.google.com/file/d/1oS7x_knkxCCgrM1k032AjC6JP9T4Bi9_/view?usp=drive_link", name: "Program 9" },
     { image: "https://drive.google.com/file/d/1TBiZbdIFEjZz5huPAyrVjKt1lL3RaTQ4/view?usp=drive_link", name: "Program 10" },
     { image: "https://drive.google.com/file/d/11yZv85QmN28DWCGiwPuXdZXW1hbOm04m/view?usp=drive_link", name: "Program 11" },
-    { image: "https://drive.google.com/file/d/10tLfW5qoSxcE6DvedF_9QJRogcxd2uOr/view?usp=drive_link", name: "Program 12" },
+    { image: "https://drive.google.com/file/d/1XKTbkJsshVa3h2-t7Uuws7ch7nbHpvQz/view?usp=drive_link", name: "Program 12", plain: true },
   ],
 
   contact: {

@@ -19,6 +19,7 @@ export default function HomePage() {
 
   const programs = site.programs.map((item, index) => ({
     name: item.name || `Program ${index + 1}`,
+    plain: Boolean(item.plain),
     image: driveSources(item.image, [480, 720, 1080]),
   }));
 

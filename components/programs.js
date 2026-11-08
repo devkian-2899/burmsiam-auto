@@ -8,7 +8,7 @@ function Card({ item }) {
         srcSet={item.image.srcSet}
         sizes="(max-width: 860px) 50vw, 22vw"
         alt={item.name}
-        className="program-photo"
+        className={item.plain ? "program-photo is-plain" : "program-photo"}
       />
     </article>
   );
