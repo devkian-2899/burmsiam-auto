@@ -41,20 +41,20 @@ logo: "/logo.png",
     },
   ],
 
-  // 12 PNG icons, 1080 × 1080, with no background. They are not links in this version.
+  // 12 PNG icons, 1080 × 1080, with no background. Each icon opens its own page.
   programs: [
-    { image: "https://drive.google.com/file/d/1dbl-MTFZmXPK_QLqTBlPBIp1gqIal_y8/view?usp=drive_link", name: "Program 1" },
-    { image: "https://drive.google.com/file/d/1j_d5RSNn3QLrDxeGQjfRG_vm1P7BAUzf/view?usp=drive_link", name: "Program 2" },
-    { image: "https://drive.google.com/file/d/1zuKcbBnyZFjnA9xo3t8mc61I_rnxIBuI/view?usp=drive_link", name: "Program 3" },
-    { image: "https://drive.google.com/file/d/1Y0kBuBn0rUIAhH4rFIjhii2wFcCJz_bD/view?usp=drive_link", name: "Program 4" },
-    { image: "https://drive.google.com/file/d/1iT50iyM7aUgXbx_Eve5z12mfvap9_YQx/view?usp=drive_link", name: "Program 5" },
-    { image: "https://drive.google.com/file/d/1G_JQP59b1QsuqZcYeX1uEgG8qDwfM--c/view?usp=drive_link", name: "Program 6" },
-    { image: "https://drive.google.com/file/d/15PGSFThLqcSBTYrfAWphaa15YedbzkY5/view?usp=drive_link", name: "Program 7" },
-    { image: "https://drive.google.com/file/d/1yCS68essMY5WTJmHfpuRGx5fPFuMMBjQ/view?usp=drive_link", name: "Program 8" },
-    { image: "https://drive.google.com/file/d/1NBlFsi_3hNr9KN7DSXv78vLpE6zdek4I/view?usp=drive_link", name: "Program 9" },
-    { image: "https://drive.google.com/file/d/16fR_KS1i7JXzUWZfFsVTAAefqQAerlb4/view?usp=drive_link", name: "Program 10" },
-    { image: "https://drive.google.com/file/d/1HUhQs3mMv1beT1SxldgST8U1SRGDvo-q/view?usp=drive_link", name: "Program 11" },
-    { image: "https://drive.google.com/file/d/1iVym4QYo7DMCVGtj3WlfQCf57j5UAoJO/view?usp=drive_link", name: "Program 12" },
+    { image: "https://drive.google.com/file/d/1dbl-MTFZmXPK_QLqTBlPBIp1gqIal_y8/view?usp=drive_link", name: "BSS", href: "/BSS" },
+    { image: "https://drive.google.com/file/d/1j_d5RSNn3QLrDxeGQjfRG_vm1P7BAUzf/view?usp=drive_link", name: "BSPS", href: "/BSPS" },
+    { image: "https://drive.google.com/file/d/1zuKcbBnyZFjnA9xo3t8mc61I_rnxIBuI/view?usp=drive_link", name: "BSGP", href: "/BSGP" },
+    { image: "https://drive.google.com/file/d/1Y0kBuBn0rUIAhH4rFIjhii2wFcCJz_bD/view?usp=drive_link", name: "ABA", href: "/ABA" },
+    { image: "https://drive.google.com/file/d/1iT50iyM7aUgXbx_Eve5z12mfvap9_YQx/view?usp=drive_link", name: "VEU", href: "/VEU" },
+    { image: "https://drive.google.com/file/d/1G_JQP59b1QsuqZcYeX1uEgG8qDwfM--c/view?usp=drive_link", name: "JDM", href: "/JDM" },
+    { image: "https://drive.google.com/file/d/15PGSFThLqcSBTYrfAWphaa15YedbzkY5/view?usp=drive_link", name: "SOA", href: "/SOA" },
+    { image: "https://drive.google.com/file/d/1yCS68essMY5WTJmHfpuRGx5fPFuMMBjQ/view?usp=drive_link", name: "TWT", href: "/TWT" },
+    { image: "https://drive.google.com/file/d/16QAFlD46VnUzzjS7FGEkK_Y7_-U77po3/view?usp=drive_link", name: "HSD", href: "/HSD" },
+    { image: "https://drive.google.com/file/d/16fR_KS1i7JXzUWZfFsVTAAefqQAerlb4/view?usp=drive_link", name: "APA", href: "/APA" },
+    { image: "https://drive.google.com/file/d/1HUhQs3mMv1beT1SxldgST8U1SRGDvo-q/view?usp=drive_link", name: "BSW", href: "/BSW" },
+    { image: "https://drive.google.com/file/d/1iVym4QYo7DMCVGtj3WlfQCf57j5UAoJO/view?usp=drive_link", name: "BSN", href: "/BSN" },
   ],
 
   contact: {

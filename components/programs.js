@@ -1,15 +1,18 @@
+import Link from "next/link";
 import { Photo } from "./photo";
 
 function Card({ item }) {
   return (
     <article className="program-card">
-      <Photo
-        src={item.image.src}
-        srcSet={item.image.srcSet}
-        sizes="(max-width: 860px) 50vw, 22vw"
-        alt={item.name}
-        className="program-photo"
-      />
+      <Link href={item.href} aria-label={item.name}>
+        <Photo
+          src={item.image.src}
+          srcSet={item.image.srcSet}
+          sizes="(max-width: 860px) 50vw, 22vw"
+          alt=""
+          className="program-photo"
+        />
+      </Link>
     </article>
   );
 }
