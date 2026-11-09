@@ -121,17 +121,14 @@ export function Latest({ slides }) {
           onTransitionEnd={onTransitionEnd}
         >
           {pages.map((slide, position) => {
-            const linked = Boolean(slide.href);
-            const Tag = linked ? "a" : "div";
-            return (
-              <Tag
-                key={`${slide.title}-${position}`}
+            const href = String(slide.href || "").trim();
+            return href ? (
+              <a
+                key={`${slide.id || slide.title}-${position}`}
                 className="latest-slide"
-                href={linked ? slide.href : undefined}
-                target={linked ? "_blank" : undefined}
-                rel={linked ? "noopener noreferrer" : undefined}
+                href={href}
                 onClick={(event) => {
-                  if (!settled || moved.current || !slide.href) {
+                  if (moved.current) {
                     event.preventDefault();
                     moved.current = false;
                   }
@@ -146,7 +143,19 @@ export function Latest({ slides }) {
                   eager={position === 1}
                 />
                 <span className="latest-glow" />
-              </Tag>
+              </a>
+            ) : (
+              <div key={`${slide.id || slide.title}-${position}`} className="latest-slide">
+                <Photo
+                  src={slide.image.src}
+                  srcSet={slide.image.srcSet}
+                  sizes="100vw"
+                  alt={slide.title || "Latest story"}
+                  className="latest-photo"
+                  eager={position === 1}
+                />
+                <span className="latest-glow" />
+              </div>
             );
           })}
         </div>

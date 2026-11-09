@@ -321,6 +321,10 @@ a {
   color: inherit;
 }
 
+a.latest-slide {
+  cursor: pointer;
+}
+
 .latest-photo {
   width: 100%;
   height: 100%;
