@@ -1,19 +1,5 @@
 import { checkPassword, ensureAdmin, findByIdentity, openSession, sameOrigin, authConfigured } from "../../../../lib/auth.mjs";
-import { databaseAvailable } from "../../../../lib/db.mjs";
-
-const attempts = new Map();
-
-function limited(identity) {
-  const key = identity.trim().toLowerCase();
-  const now = Date.now();
-  const entry = attempts.get(key);
-  if (!entry || entry.reset < now) {
-    attempts.set(key, { count: 1, reset: now + 15 * 60 * 1000 });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > 8;
-}
+import { databaseAvailable, sql } from "../../../../lib/db.mjs";
 
 export async function POST(request) {
   if (!sameOrigin(request)) return Response.json({ error: "Sign-in was refused." }, { status: 403 });
@@ -21,20 +7,31 @@ export async function POST(request) {
   if (!authConfigured()) return Response.json({ error: "Sign-in is not configured yet." }, { status: 503 });
 
   const body = await request.json().catch(() => ({}));
-  const identity = String(body.identity || "");
+  const identity = String(body.identity || "").trim();
   const password = String(body.password || "");
-  if (!identity.trim() || !password) {
+  if (!identity || !password) {
     return Response.json({ error: "Enter your account and password." }, { status: 400 });
   }
-  if (limited(identity)) {
+  if (await tooManyAttempts(identity)) {
     return Response.json({ error: "Too many tries. Wait a few minutes and try again." }, { status: 429 });
   }
 
   await ensureAdmin();
   const staff = await findByIdentity(identity);
   if (!staff || !(await checkPassword(staff, password))) {
+    await sql("insert into login_attempts (identity) values ($1)", [identity.toLowerCase().slice(0, 200)]);
     return Response.json({ error: "That sign-in does not match an account." }, { status: 401 });
   }
   await openSession(staff.id, Boolean(body.remember));
   return Response.json({ ok: true });
+}
+
+async function tooManyAttempts(identity) {
+  await sql("delete from login_attempts where created_at < now() - interval '15 minutes'");
+  const rows = await sql(
+    `select count(*)::int as count from login_attempts
+     where lower(identity) = lower($1) and created_at > now() - interval '15 minutes'`,
+    [identity.slice(0, 200)],
+  );
+  return Number(rows[0]?.count || 0) >= 8;
 }

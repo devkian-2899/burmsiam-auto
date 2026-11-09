@@ -56,7 +56,7 @@ export function LoginForm() {
         </label>
         <button className="admin-button" type="submit" disabled={pending}>{pending ? "Signing in…" : "Log in"}</button>
         {error ? <p className="admin-status">{error}</p> : null}
-        <Link className="admin-quiet" href="/admin/forgot">Forgot password</Link>
+        <Link className="admin-quiet" href="/login/forgot">Forgot password</Link>
       </form>
     </main>
   );

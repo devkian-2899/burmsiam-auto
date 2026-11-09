@@ -21,7 +21,7 @@ export async function middleware(request) {
     return NextResponse.json({ error: "Sign in first." }, { status: 401 });
   }
   const url = request.nextUrl.clone();
-  url.pathname = "/admin";
+  url.pathname = "/login";
   url.search = "";
   return NextResponse.redirect(url);
 }

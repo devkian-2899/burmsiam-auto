@@ -1,9 +1,5 @@
-import { ForgotForm } from "../../../components/admin/forgot-form";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Forgot password · BurmSiamAuto",
-};
-
-export default function ForgotPasswordPage() {
-  return <ForgotForm />;
+export default function ForgotRedirect() {
+  redirect("/login/forgot");
 }

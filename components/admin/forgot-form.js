@@ -41,7 +41,7 @@ export function ForgotForm() {
         <button className="admin-button" type="submit" disabled={pending}>{pending ? "Sending…" : "Send reset link"}</button>
         {message ? <p className="admin-status">{message}</p> : null}
         {error ? <p className="admin-status">{error}</p> : null}
-        <Link className="admin-quiet" href="/admin">Back to log in</Link>
+        <Link className="admin-quiet" href="/login">Back to log in</Link>
       </form>
     </main>
   );

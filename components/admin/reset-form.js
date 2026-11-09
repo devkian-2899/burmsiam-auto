@@ -31,7 +31,7 @@ export function ResetForm() {
       setError(body.error || "The password was not changed.");
       return;
     }
-    router.push("/admin?reset=1");
+    router.push("/login?reset=1");
   }
 
   return (
@@ -51,7 +51,7 @@ export function ResetForm() {
         </label>
         <button className="admin-button" type="submit" disabled={pending || !token}>{pending ? "Saving…" : "Update password"}</button>
         {error ? <p className="admin-status">{error}</p> : null}
-        <Link className="admin-quiet" href="/admin/forgot">Request a new link</Link>
+        <Link className="admin-quiet" href="/login/forgot">Request a new link</Link>
       </form>
     </main>
   );

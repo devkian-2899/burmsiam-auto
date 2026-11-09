@@ -39,7 +39,7 @@ function LogoutButton() {
 
   async function onClick() {
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin");
+    router.push("/login");
     router.refresh();
   }
 

@@ -87,6 +87,14 @@ create table if not exists sessions (
 
 create index if not exists sessions_staff_id_idx on sessions (staff_id);
 
+create table if not exists login_attempts (
+  id bigint generated always as identity primary key,
+  identity text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists login_attempts_identity_idx on login_attempts (lower(identity), created_at);
+
 create table if not exists password_resets (
   id bigint generated always as identity primary key,
   staff_id bigint not null references staff (id) on delete cascade,

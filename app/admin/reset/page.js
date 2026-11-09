@@ -1,14 +1,7 @@
-import { Suspense } from "react";
-import { ResetForm } from "../../../components/admin/reset-form";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Reset password · BurmSiamAuto",
-};
-
-export default function ResetPasswordPage() {
-  return (
-    <Suspense fallback={<p className="admin-status">Loading reset…</p>}>
-      <ResetForm />
-    </Suspense>
-  );
+export default async function ResetRedirect({ searchParams }) {
+  const params = await searchParams;
+  const token = typeof params?.token === "string" ? params.token : "";
+  redirect(token ? `/login/reset?token=${encodeURIComponent(token)}` : "/login/reset");
 }
