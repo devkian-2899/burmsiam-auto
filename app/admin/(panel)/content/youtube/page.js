@@ -1,6 +1,5 @@
-import { AdminShell } from "../../../../components/admin/shell";
-import { PreviewSave } from "../../../../components/admin/preview-save";
-import { site } from "../../../../content/site";
+import { PreviewSave } from "../../../../../components/admin/preview-save";
+import { site } from "../../../../../content/site";
 
 export const metadata = {
   title: "Recent YouTube link · BurmSiamAuto",
@@ -8,7 +7,6 @@ export const metadata = {
 
 export default function YoutubePage() {
   return (
-    <AdminShell>
       <section className="admin-card">
         <h1>Change recent YouTube link</h1>
         <p className="admin-lead">This is the film embedded beside the slogan.</p>
@@ -19,6 +17,5 @@ export default function YoutubePage() {
           </label>
         </PreviewSave>
       </section>
-    </AdminShell>
   );
 }

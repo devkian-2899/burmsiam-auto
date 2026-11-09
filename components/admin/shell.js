@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const groups = [
@@ -34,6 +34,20 @@ function active(path, href) {
   return path === href || path.startsWith(`${href}/`);
 }
 
+function LogoutButton() {
+  const router = useRouter();
+
+  async function onClick() {
+    await fetch("/api/admin/logout", { method: "POST" });
+    router.push("/admin");
+    router.refresh();
+  }
+
+  return (
+    <button className="admin-logout" type="button" onClick={onClick}>Log out</button>
+  );
+}
+
 export function AdminShell({ children }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
@@ -60,7 +74,7 @@ export function AdminShell({ children }) {
             <img src="/images/main/logob.png" alt="BurmSiamAuto" />
           </Link>
         </div>
-        <Link className="admin-logout" href="/admin">Log out</Link>
+        <LogoutButton />
       </header>
       {open ? <button className="admin-scrim" type="button" aria-label="Close menu" onClick={() => setOpen(false)} /> : null}
       <aside id="admin-side" className={open ? "admin-side is-open" : "admin-side"}>

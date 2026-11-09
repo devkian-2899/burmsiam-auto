@@ -1,6 +1,5 @@
-import { AdminShell } from "../../../../components/admin/shell";
-import { PreviewSave } from "../../../../components/admin/preview-save";
-import { site } from "../../../../content/site";
+import { PreviewSave } from "../../../../../components/admin/preview-save";
+import { site } from "../../../../../content/site";
 
 export const metadata = {
   title: "Add season · BurmSiamAuto",
@@ -8,7 +7,6 @@ export const metadata = {
 
 export default function AddSeasonPage() {
   return (
-    <AdminShell>
       <section className="admin-card">
         <h1>Add more Season</h1>
         <p className="admin-lead">Add a season, and a volume inside it, to a program.</p>
@@ -32,6 +30,5 @@ export default function AddSeasonPage() {
           </label>
         </PreviewSave>
       </section>
-    </AdminShell>
   );
 }

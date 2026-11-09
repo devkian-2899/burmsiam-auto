@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { roles, sampleUsers } from "../../content/admin-users";
+import { useEffect, useMemo, useState } from "react";
+import { roles } from "../../content/admin-users";
 
 const columns = [
   { key: "name", label: "Name" },
@@ -13,12 +13,38 @@ const columns = [
 ];
 
 export function UserTable() {
-  const [rows, setRows] = useState(sampleUsers);
+  const [rows, setRows] = useState([]);
+  const [status, setStatus] = useState("loading");
+  const [message, setMessage] = useState("");
   const [query, setQuery] = useState("");
   const [role, setRole] = useState("");
   const [applied, setApplied] = useState({ query: "", role: "" });
   const [sort, setSort] = useState({ key: "name", direction: "asc" });
   const [pendingDelete, setPendingDelete] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/admin/staff")
+      .then(async (response) => {
+        const body = await response.json().catch(() => ({}));
+        if (!active) return;
+        if (!response.ok) {
+          setStatus("error");
+          setMessage(body.error || "The accounts could not be loaded.");
+          return;
+        }
+        setRows(body.staff || []);
+        setStatus("ready");
+      })
+      .catch(() => {
+        if (!active) return;
+        setStatus("error");
+        setMessage("The accounts could not be loaded.");
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const visible = useMemo(() => {
     const needle = applied.query.trim().toLowerCase();
@@ -47,6 +73,18 @@ export function UserTable() {
     ));
   }
 
+  async function remove(id) {
+    const response = await fetch(`/api/admin/staff/${id}`, { method: "DELETE" });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      setMessage(body.error || "The account was not deleted.");
+      setPendingDelete("");
+      return;
+    }
+    setRows((current) => current.filter((item) => item.id !== id));
+    setPendingDelete("");
+  }
+
   return (
     <section className="admin-card">
       <div className="admin-heading">
@@ -73,6 +111,9 @@ export function UserTable() {
         </label>
         <button className="admin-button" type="submit">Search</button>
       </form>
+      {status === "loading" ? <p className="admin-status">Loading accounts…</p> : null}
+      {status === "error" ? <p className="admin-status">{message}</p> : null}
+      {message && status === "ready" ? <p className="admin-status">{message}</p> : null}
       <div className="admin-table-wrap">
         <table className="admin-table">
           <thead>
@@ -92,7 +133,7 @@ export function UserTable() {
             </tr>
           </thead>
           <tbody>
-            {visible.length === 0 ? (
+            {status === "ready" && visible.length === 0 ? (
               <tr>
                 <td className="admin-empty" colSpan={6}>No accounts match this search.</td>
               </tr>
@@ -108,13 +149,7 @@ export function UserTable() {
                     <Link href={`/admin/users/edit?id=${user.id}`}>Edit</Link>
                     {pendingDelete === user.id ? (
                       <>
-                        <button type="button" onClick={() => {
-                          setRows((current) => current.filter((item) => item.id !== user.id));
-                          setPendingDelete("");
-                        }}
-                        >
-                          Confirm
-                        </button>
+                        <button type="button" onClick={() => remove(user.id)}>Confirm</button>
                         <button type="button" onClick={() => setPendingDelete("")}>Cancel</button>
                       </>
                     ) : (
@@ -127,7 +162,6 @@ export function UserTable() {
           </tbody>
         </table>
       </div>
-      <p className="admin-status">Sample accounts for the preview. Search and sort stay in this browser tab.</p>
     </section>
   );
 }

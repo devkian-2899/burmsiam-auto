@@ -1,5 +1,4 @@
-import { AdminShell } from "../../../../components/admin/shell";
-import { PreviewSave } from "../../../../components/admin/preview-save";
+import { PreviewSave } from "../../../../../components/admin/preview-save";
 
 export const metadata = {
   title: "Add program · BurmSiamAuto",
@@ -7,7 +6,6 @@ export const metadata = {
 
 export default function AddProgramPage() {
   return (
-    <AdminShell>
       <section className="admin-card">
         <h1>Add more Program</h1>
         <p className="admin-lead">A new program mark for the public program row.</p>
@@ -22,6 +20,5 @@ export default function AddProgramPage() {
           </label>
         </PreviewSave>
       </section>
-    </AdminShell>
   );
 }

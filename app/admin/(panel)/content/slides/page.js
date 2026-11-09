@@ -1,6 +1,5 @@
-import { AdminShell } from "../../../../components/admin/shell";
-import { PreviewSave } from "../../../../components/admin/preview-save";
-import { site } from "../../../../content/site";
+import { PreviewSave } from "../../../../../components/admin/preview-save";
+import { site } from "../../../../../content/site";
 
 export const metadata = {
   title: "Latest Explore slideshow · BurmSiamAuto",
@@ -8,7 +7,6 @@ export const metadata = {
 
 export default function SlidesPage() {
   return (
-    <AdminShell>
       <section className="admin-card">
         <h1>Change slideshow Latest Explore</h1>
         <p className="admin-lead">The four photos in Explore the Latest. This section is still hidden on the public site.</p>
@@ -32,6 +30,5 @@ export default function SlidesPage() {
           ))}
         </PreviewSave>
       </section>
-    </AdminShell>
   );
 }

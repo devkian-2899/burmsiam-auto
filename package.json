@@ -7,10 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test lib/media.test.mjs"
+    "test": "node --test lib/media.test.mjs lib/password.test.mjs lib/session-cookie.test.mjs"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
     "next": "16.4.5",
+    "pg": "^8.16.3",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

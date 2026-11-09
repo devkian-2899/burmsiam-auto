@@ -3,7 +3,7 @@
 -- Photo columns store the address of a file in the Cloudflare bucket
 -- burmsiamauto-cfstorage. They do not store the image itself.
 
-create table programs (
+create table if not exists programs (
   id bigint generated always as identity primary key,
   name text not null default '',
   abbr text not null default '',
@@ -13,14 +13,14 @@ create table programs (
   unique (abbr)
 );
 
-create table seasons (
+create table if not exists seasons (
   id bigint generated always as identity primary key,
   season text not null default '',
   volume text not null default '',
   unique (season, volume)
 );
 
-create table episodes (
+create table if not exists episodes (
   id bigint generated always as identity primary key,
   episode text not null default '',
   title text not null default '',
@@ -31,16 +31,16 @@ create table episodes (
   season_id bigint not null references seasons (id)
 );
 
-create index episodes_program_id_idx on episodes (program_id);
-create index episodes_season_id_idx on episodes (season_id);
+create index if not exists episodes_program_id_idx on episodes (program_id);
+create index if not exists episodes_season_id_idx on episodes (season_id);
 
-create table latest (
+create table if not exists latest (
   id bigint generated always as identity primary key,
   photo text not null default '',
   link text not null default ''
 );
 
-create table visual (
+create table if not exists visual (
   id bigint generated always as identity primary key,
   cover1 text not null default '',
   cover2 text not null default '',
@@ -62,4 +62,35 @@ create table visual (
   yt text not null default '',
   mail text not null default '',
   copyright text not null default ''
+);
+
+create table if not exists staff (
+  id bigint generated always as identity primary key,
+  name text not null default '',
+  username text not null,
+  email text not null,
+  phone text not null default '',
+  role text not null check (role in ('Admin', 'Moderator', 'Content Manager')),
+  password_hash text not null,
+  created_at timestamptz not null default now()
+);
+
+create unique index if not exists staff_username_lower_idx on staff (lower(username));
+create unique index if not exists staff_email_lower_idx on staff (lower(email));
+
+create table if not exists sessions (
+  id text primary key,
+  staff_id bigint not null references staff (id) on delete cascade,
+  expires_at timestamptz not null,
+  remember boolean not null default false
+);
+
+create index if not exists sessions_staff_id_idx on sessions (staff_id);
+
+create table if not exists password_resets (
+  id bigint generated always as identity primary key,
+  staff_id bigint not null references staff (id) on delete cascade,
+  token_hash text not null unique,
+  expires_at timestamptz not null,
+  used_at timestamptz
 );

@@ -1147,7 +1147,9 @@ a {
   border-radius: 6px;
   background: #fff;
   color: #1c2426;
+  font: inherit;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .admin-menu-button {

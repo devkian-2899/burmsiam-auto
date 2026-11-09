@@ -1,6 +1,5 @@
-import { AdminShell } from "../../../../components/admin/shell";
-import { PreviewSave } from "../../../../components/admin/preview-save";
-import { site } from "../../../../content/site";
+import { PreviewSave } from "../../../../../components/admin/preview-save";
+import { site } from "../../../../../content/site";
 
 export const metadata = {
   title: "Add episode · BurmSiamAuto",
@@ -8,7 +7,6 @@ export const metadata = {
 
 export default function AddEpisodePage() {
   return (
-    <AdminShell>
       <section className="admin-card">
         <h1>Add more episodes</h1>
         <p className="admin-lead">Add one episode card to a season and volume.</p>
@@ -44,6 +42,5 @@ export default function AddEpisodePage() {
           </label>
         </PreviewSave>
       </section>
-    </AdminShell>
   );
 }

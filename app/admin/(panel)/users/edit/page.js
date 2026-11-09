@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { EditAccount } from "../../../../components/admin/edit-account";
+import { EditAccount } from "../../../../../components/admin/edit-account";
 
 export const metadata = {
   title: "Edit account · BurmSiamAuto",
