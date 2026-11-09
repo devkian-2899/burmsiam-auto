@@ -26,9 +26,10 @@ function EpisodeCard({ episode }) {
       {episode.description ? <p className="episode-copy">{episode.description}</p> : null}
     </>
   );
-  if (!episode.link) return <article className="episode-card">{body}</article>;
+  const href = String(episode.link || "").trim();
+  if (!href) return <article className="episode-card">{body}</article>;
   return (
-    <a className="episode-card" href={episode.link} target="_blank" rel="noreferrer">
+    <a className="episode-card" href={href} target="_blank" rel="noreferrer">
       {body}
     </a>
   );

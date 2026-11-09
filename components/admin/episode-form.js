@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { readPhoto } from "./read-photo";
 
 const empty = {
-  episode: "",
+  episodeMajor: "",
+  episodeMinor: "",
   title: "",
   description: "",
   link: "",
@@ -15,9 +16,21 @@ const empty = {
   seasonId: "",
 };
 
+function fromRecord(record) {
+  const stored = String(record?.episode || "");
+  const match = stored.match(/^\[(\d+)\.(\d+)\]$/);
+  const plain = /^\d+$/.test(stored) ? stored : "";
+  return {
+    ...empty,
+    ...record,
+    episodeMajor: match?.[1] || plain,
+    episodeMinor: match?.[2] || "",
+  };
+}
+
 export function EpisodeForm({ mode, record }) {
   const router = useRouter();
-  const [values, setValues] = useState(record ? { ...empty, ...record } : empty);
+  const [values, setValues] = useState(record ? fromRecord(record) : empty);
   const [programs, setPrograms] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [lists, setLists] = useState("loading");
@@ -48,6 +61,11 @@ export function EpisodeForm({ mode, record }) {
 
   function setField(event) {
     const { name, value } = event.target;
+    setValues((current) => ({ ...current, [name]: value }));
+  }
+
+  function setDigits(name, event) {
+    const value = event.target.value.replace(/\D/g, "").slice(0, 6);
     setValues((current) => ({ ...current, [name]: value }));
   }
 
@@ -111,34 +129,43 @@ export function EpisodeForm({ mode, record }) {
       {lists === "error" ? <p className="admin-status">The program and season lists could not be loaded.</p> : null}
       {lists === "ready" && programs.length === 0 ? <p className="admin-status">Add a program before saving an episode.</p> : null}
       {lists === "ready" && seasons.length === 0 ? <p className="admin-status">Add a season before saving an episode.</p> : null}
-      <div className="admin-fields">
-        <label>
-          <span>Program</span>
-          <select name="programId" value={values.programId} onChange={setField} required>
-            <option value="">Select a program</option>
-            {programs.map((program) => (
-              <option key={program.id} value={program.id}>{program.abbr}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <span>Season</span>
-          <select name="seasonId" value={values.seasonId} onChange={setField} required>
-            <option value="">Select a season</option>
-            {seasons.map((season) => (
-              <option key={season.id} value={season.id}>{season.label}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <span>Episode</span>
-          <input name="episode" value={values.episode} onChange={setField} placeholder="1" required />
-        </label>
-        <label>
-          <span>Title</span>
-          <input name="title" value={values.title} onChange={setField} />
-        </label>
-      </div>
+      <label>
+        <span>Program</span>
+        <select name="programId" value={values.programId} onChange={setField} required>
+          <option value="">Select a program</option>
+          {programs.map((program) => (
+            <option key={program.id} value={program.id}>{program.abbr}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>Season</span>
+        <select name="seasonId" value={values.seasonId} onChange={setField} required>
+          <option value="">Select a season</option>
+          {seasons.map((season) => (
+            <option key={season.id} value={season.id}>{season.label}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>Title</span>
+        <input name="title" value={values.title} onChange={setField} />
+      </label>
+      <label>
+        <span>Cover</span>
+        <input key={`cover-${fileKey}`} name="photo" type="file" accept="image/*" onChange={setCover} />
+        {values.photo ? <img className="admin-photo-preview admin-photo-preview-wide" src={values.photo} alt="" /> : null}
+      </label>
+      <label>
+        <span>Episode</span>
+        <div className="episode-number">
+          <i>[</i>
+          <input name="episodeMajor" inputMode="numeric" value={values.episodeMajor} onChange={(event) => setDigits("episodeMajor", event)} aria-label="Episode number before the dot" required />
+          <i>.</i>
+          <input name="episodeMinor" inputMode="numeric" value={values.episodeMinor} onChange={(event) => setDigits("episodeMinor", event)} aria-label="Episode number after the dot" required />
+          <i>]</i>
+        </div>
+      </label>
       <label>
         <span>Description</span>
         <textarea name="description" value={values.description} onChange={setField} rows={4} />
@@ -146,11 +173,6 @@ export function EpisodeForm({ mode, record }) {
       <label>
         <span>Link</span>
         <input name="link" value={values.link} onChange={setField} placeholder="https://" />
-      </label>
-      <label>
-        <span>Cover</span>
-        <input key={`cover-${fileKey}`} name="photo" type="file" accept="image/*" onChange={setCover} />
-        {values.photo ? <img className="admin-photo-preview admin-photo-preview-wide" src={values.photo} alt="" /> : null}
       </label>
       <div className="admin-actions">
         <button className="admin-button" type="submit" disabled={pending || reading > 0}>{pending ? "Saving…" : "Save"}</button>

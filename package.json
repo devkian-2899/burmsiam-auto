@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test lib/media.test.mjs lib/password.test.mjs lib/session-cookie.test.mjs lib/origin.test.mjs lib/database-url.test.mjs lib/catalog-rules.test.mjs lib/catalog-store.test.mjs"
+    "test": "node --test lib/media.test.mjs lib/password.test.mjs lib/session-cookie.test.mjs lib/origin.test.mjs lib/database-url.test.mjs lib/catalog-rules.test.mjs lib/catalog-store.test.mjs lib/content-rules.test.mjs lib/content-store.test.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.14",

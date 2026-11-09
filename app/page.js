@@ -7,29 +7,22 @@ import { Hero } from "../components/hero";
 import { Latest } from "../components/latest";
 import { Programs } from "../components/programs";
 import { site } from "../content/site";
-import { driveSources, youtubeId } from "../lib/media.mjs";
+import { youtubeId } from "../lib/media.mjs";
+import { publicSlides, publicYoutube } from "../lib/public-home.mjs";
 import { publicProgramMarks } from "../lib/public-catalog.mjs";
 
 export default function HomePage() {
-  const slides = site.slides
-    .filter((slide) => String(slide.image || "").trim())
-    .map((slide) => ({
-      title: slide.title,
-      href: String(slide.href || "").trim(),
-      image: driveSources(slide.image, [1280, 1920, 2560, 3840]),
-    }));
-
   return (
     <>
       <Header name={site.name} logo={site.headerLogo} />
       <main>
-        <Hero
-          slogan={site.slogan}
-          youtubeId={youtubeId(site.youtube)}
-          covers={site.covers}
-        />
+        <Suspense fallback={<Hero slogan={site.slogan} youtubeId="" covers={site.covers} />}>
+          <HomeFilm />
+        </Suspense>
         <About />
-        <Latest slides={slides} />
+        <Suspense fallback={<p className="program-empty">Loading the latest…</p>}>
+          <HomeSlides />
+        </Suspense>
         <Suspense fallback={<p className="program-empty">Loading programs…</p>}>
           <ProgramMarks />
         </Suspense>
@@ -38,6 +31,20 @@ export default function HomePage() {
       <Footer />
     </>
   );
+}
+
+async function HomeFilm() {
+  return (
+    <Hero
+      slogan={site.slogan}
+      youtubeId={youtubeId(await publicYoutube())}
+      covers={site.covers}
+    />
+  );
+}
+
+async function HomeSlides() {
+  return <Latest slides={await publicSlides()} />;
 }
 
 async function ProgramMarks() {

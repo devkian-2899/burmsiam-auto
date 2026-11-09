@@ -1377,6 +1377,23 @@ a {
   background: #f7f8f8;
 }
 
+.episode-number {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.episode-number i {
+  color: #1c2426;
+  font-style: normal;
+  font-size: 1.15rem;
+}
+
+.admin .episode-number input {
+  width: 4.75rem;
+  text-align: center;
+}
+
 .admin-photo-preview {
   width: 7.5rem;
   height: 7.5rem;

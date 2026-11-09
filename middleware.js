@@ -10,7 +10,9 @@ function isPanel(pathname) {
     || pathname.startsWith("/api/admin/staff")
     || pathname.startsWith("/api/admin/programs")
     || pathname.startsWith("/api/admin/seasons")
-    || pathname.startsWith("/api/admin/episodes");
+    || pathname.startsWith("/api/admin/episodes")
+    || pathname.startsWith("/api/admin/youtube")
+    || pathname.startsWith("/api/admin/slides");
 }
 
 export async function middleware(request) {
@@ -41,5 +43,9 @@ export const config = {
     "/api/admin/seasons/:path*",
     "/api/admin/episodes",
     "/api/admin/episodes/:path*",
+    "/api/admin/youtube",
+    "/api/admin/youtube/:path*",
+    "/api/admin/slides",
+    "/api/admin/slides/:path*",
   ],
 };

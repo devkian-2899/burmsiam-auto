@@ -77,33 +77,31 @@ export function ProgramForm({ mode, record }) {
     <form className="admin-card" onSubmit={onSubmit}>
       <h1>{mode === "edit" ? "Edit program" : "New program"}</h1>
       <p className="admin-lead">The abbreviation is the public page, such as /BSS. A smaller sorting number appears first. Photos are saved with the program.</p>
-      <div className="admin-fields">
-        <label>
-          <span>Abbreviation</span>
-          <input name="abbr" value={values.abbr} onChange={setField} placeholder="BSS" required />
-        </label>
-        <label>
-          <span>Sorting no</span>
-          <input name="sortingno" type="number" step="1" value={values.sortingno} onChange={setField} required />
-        </label>
-        <label>
-          <span>Name</span>
-          <input name="name" value={values.name} onChange={setField} />
-        </label>
-      </div>
+      <label>
+        <span>Icon</span>
+        <input key={`icon-${fileKey}`} name="icon" type="file" accept="image/*" onChange={(event) => setPhoto("icon", 1080, event)} />
+        {values.icon ? <img className="admin-photo-preview" src={values.icon} alt="" /> : null}
+      </label>
+      <label>
+        <span>Name</span>
+        <input name="name" value={values.name} onChange={setField} />
+      </label>
+      <label>
+        <span>Abbreviation</span>
+        <input name="abbr" value={values.abbr} onChange={setField} placeholder="BSS" required />
+      </label>
       <label>
         <span>Description</span>
         <textarea name="description" value={values.description} onChange={setField} rows={4} />
       </label>
       <label>
+        <span>Sorting no</span>
+        <input name="sortingno" type="number" step="1" value={values.sortingno} onChange={setField} required />
+      </label>
+      <label>
         <span>Background</span>
         <input key={`cover-${fileKey}`} name="cover" type="file" accept="image/*" onChange={(event) => setPhoto("cover", 1920, event)} />
         {values.cover ? <img className="admin-photo-preview admin-photo-preview-wide" src={values.cover} alt="" /> : null}
-      </label>
-      <label>
-        <span>Icon</span>
-        <input key={`icon-${fileKey}`} name="icon" type="file" accept="image/*" onChange={(event) => setPhoto("icon", 1080, event)} />
-        {values.icon ? <img className="admin-photo-preview" src={values.icon} alt="" /> : null}
       </label>
       <div className="admin-actions">
         <button className="admin-button" type="submit" disabled={pending || reading > 0}>{pending ? "Saving…" : "Save"}</button>
