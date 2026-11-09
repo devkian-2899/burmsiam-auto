@@ -1361,6 +1361,26 @@ a {
   resize: vertical;
 }
 
+.admin input[type="file"] {
+  padding: 0.4rem;
+  background: #f7f8f8;
+}
+
+.admin-photo-preview {
+  width: 7.5rem;
+  height: 7.5rem;
+  object-fit: contain;
+  border: 1px solid #e1e4e6;
+  border-radius: 6px;
+  background: #f3f4f5;
+}
+
+.admin-photo-preview-wide {
+  width: min(100%, 18rem);
+  height: 8rem;
+  object-fit: cover;
+}
+
 .admin input:focus,
 .admin select:focus,
 .admin textarea:focus {

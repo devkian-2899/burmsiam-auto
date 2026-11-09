@@ -33,8 +33,13 @@ export function SeasonForm({ mode, record }) {
       setNotice(body.error || "The season was not saved.");
       return;
     }
-    router.push("/admin/episodes/seasons");
-    router.refresh();
+    if (mode === "edit") {
+      router.push("/admin/episodes/seasons");
+      router.refresh();
+      return;
+    }
+    setValues(empty);
+    setNotice("Saved. You can add another.");
   }
 
   async function remove() {
@@ -65,7 +70,7 @@ export function SeasonForm({ mode, record }) {
       </div>
       <div className="admin-actions">
         <button className="admin-button" type="submit" disabled={pending}>{pending ? "Saving…" : "Save"}</button>
-        <Link className="admin-button admin-button-quiet" href="/admin/episodes/seasons">Cancel</Link>
+        {mode === "edit" ? <Link className="admin-button admin-button-quiet" href="/admin/episodes/seasons">Cancel</Link> : null}
       </div>
       {notice ? <p className="admin-status">{notice}</p> : null}
       {mode === "edit" ? (
@@ -80,7 +85,9 @@ export function SeasonForm({ mode, record }) {
             <button className="admin-button admin-button-danger" type="button" onClick={() => setConfirmDelete(true)}>Delete season</button>
           )}
         </div>
-      ) : null}
+      ) : (
+        <Link className="admin-button admin-button-quiet" href="/admin/episodes/seasons">Back to index</Link>
+      )}
     </form>
   );
 }

@@ -6,16 +6,65 @@ import { useState } from "react";
 
 const empty = { name: "", abbr: "", description: "", cover: "", icon: "" };
 
+function readPhoto(file, maxEdge) {
+  return new Promise((resolve, reject) => {
+    if (!file || !String(file.type || "").startsWith("image/")) {
+      reject(new Error("Choose a photo."));
+      return;
+    }
+    const image = new Image();
+    const url = URL.createObjectURL(file);
+    image.onload = () => {
+      const longest = Math.max(image.width, image.height) || 1;
+      const scale = Math.min(1, maxEdge / longest);
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(image.width * scale));
+      canvas.height = Math.max(1, Math.round(image.height * scale));
+      canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      const webp = canvas.toDataURL("image/webp", 0.82);
+      const photo = webp.startsWith("data:image/webp") ? webp : canvas.toDataURL("image/png");
+      if (photo.length > 2_500_000) {
+        reject(new Error("That photo is too large. Choose a smaller one."));
+        return;
+      }
+      resolve(photo);
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("That photo could not be read."));
+    };
+    image.src = url;
+  });
+}
+
 export function ProgramForm({ mode, record }) {
   const router = useRouter();
   const [values, setValues] = useState(record ? { ...empty, ...record } : empty);
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
+  const [reading, setReading] = useState(0);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [fileKey, setFileKey] = useState(0);
 
   function setField(event) {
     const { name, value } = event.target;
     setValues((current) => ({ ...current, [name]: value }));
+  }
+
+  async function setPhoto(name, maxEdge, event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setNotice("");
+    setReading((count) => count + 1);
+    try {
+      const photo = await readPhoto(file, maxEdge);
+      setValues((current) => ({ ...current, [name]: photo }));
+    } catch (error) {
+      setNotice(error.message || "That photo could not be read.");
+    } finally {
+      setReading((count) => count - 1);
+    }
   }
 
   async function onSubmit(event) {
@@ -33,8 +82,14 @@ export function ProgramForm({ mode, record }) {
       setNotice(body.error || "The program was not saved.");
       return;
     }
-    router.push("/admin/episodes/programs");
-    router.refresh();
+    if (mode === "edit") {
+      router.push("/admin/episodes/programs");
+      router.refresh();
+      return;
+    }
+    setValues(empty);
+    setFileKey((key) => key + 1);
+    setNotice("Saved. You can add another.");
   }
 
   async function remove() {
@@ -52,7 +107,7 @@ export function ProgramForm({ mode, record }) {
   return (
     <form className="admin-card" onSubmit={onSubmit}>
       <h1>{mode === "edit" ? "Edit program" : "New program"}</h1>
-      <p className="admin-lead">The abbreviation is the public page, such as /BSS.</p>
+      <p className="admin-lead">The abbreviation is the public page, such as /BSS. Photos are saved with the program.</p>
       <div className="admin-fields">
         <label>
           <span>Abbreviation</span>
@@ -68,16 +123,18 @@ export function ProgramForm({ mode, record }) {
         <textarea name="description" value={values.description} onChange={setField} rows={4} />
       </label>
       <label>
-        <span>Cover photo address</span>
-        <input name="cover" value={values.cover} onChange={setField} placeholder="https://" />
+        <span>Background</span>
+        <input key={`cover-${fileKey}`} name="cover" type="file" accept="image/*" onChange={(event) => setPhoto("cover", 1920, event)} />
+        {values.cover ? <img className="admin-photo-preview admin-photo-preview-wide" src={values.cover} alt="" /> : null}
       </label>
       <label>
-        <span>Icon address</span>
-        <input name="icon" value={values.icon} onChange={setField} placeholder="/images/programs/BSS.png" />
+        <span>Icon</span>
+        <input key={`icon-${fileKey}`} name="icon" type="file" accept="image/*" onChange={(event) => setPhoto("icon", 1080, event)} />
+        {values.icon ? <img className="admin-photo-preview" src={values.icon} alt="" /> : null}
       </label>
       <div className="admin-actions">
-        <button className="admin-button" type="submit" disabled={pending}>{pending ? "Saving…" : "Save"}</button>
-        <Link className="admin-button admin-button-quiet" href="/admin/episodes/programs">Cancel</Link>
+        <button className="admin-button" type="submit" disabled={pending || reading > 0}>{pending ? "Saving…" : "Save"}</button>
+        {mode === "edit" ? <Link className="admin-button admin-button-quiet" href="/admin/episodes/programs">Cancel</Link> : null}
       </div>
       {notice ? <p className="admin-status">{notice}</p> : null}
       {mode === "edit" ? (
@@ -92,7 +149,9 @@ export function ProgramForm({ mode, record }) {
             <button className="admin-button admin-button-danger" type="button" onClick={() => setConfirmDelete(true)}>Delete program</button>
           )}
         </div>
-      ) : null}
+      ) : (
+        <Link className="admin-button admin-button-quiet" href="/admin/episodes/programs">Back to index</Link>
+      )}
     </form>
   );
 }

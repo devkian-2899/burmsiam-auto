@@ -43,8 +43,13 @@ export function UserForm({ mode, user }) {
       setNotice(body.error || "The account was not saved.");
       return;
     }
-    router.push("/admin/users");
-    router.refresh();
+    if (mode === "edit") {
+      router.push("/admin/users");
+      router.refresh();
+      return;
+    }
+    setValues(empty);
+    setNotice("Saved. You can add another.");
   }
 
   async function removeAccount() {
@@ -108,7 +113,7 @@ export function UserForm({ mode, user }) {
       </div>
       <div className="admin-actions">
         <button className="admin-button" type="submit" disabled={pending}>{mode === "edit" ? "Update" : "Create account"}</button>
-        <Link className="admin-button admin-button-quiet" href="/admin/users">Cancel</Link>
+        {mode === "edit" ? <Link className="admin-button admin-button-quiet" href="/admin/users">Cancel</Link> : null}
         {mode === "edit" ? (
           <button className="admin-button admin-button-danger" type="button" onClick={() => setConfirmDelete(true)}>
             Delete
@@ -116,6 +121,7 @@ export function UserForm({ mode, user }) {
         ) : null}
       </div>
       {notice ? <p className="admin-status">{notice}</p> : null}
+      {mode === "edit" ? null : <Link className="admin-button admin-button-quiet" href="/admin/users">Back to index</Link>}
       {confirmDelete ? (
         <div className="admin-confirm">
           <p>Delete this account? The person will no longer be able to sign in.</p>

@@ -63,8 +63,13 @@ export function EpisodeForm({ mode, record }) {
       setNotice(body.error || "The episode was not saved.");
       return;
     }
-    router.push("/admin/episodes/add");
-    router.refresh();
+    if (mode === "edit") {
+      router.push("/admin/episodes/add");
+      router.refresh();
+      return;
+    }
+    setValues(empty);
+    setNotice("Saved. You can add another.");
   }
 
   async function remove() {
@@ -129,7 +134,7 @@ export function EpisodeForm({ mode, record }) {
       </label>
       <div className="admin-actions">
         <button className="admin-button" type="submit" disabled={pending}>{pending ? "Saving…" : "Save"}</button>
-        <Link className="admin-button admin-button-quiet" href="/admin/episodes/add">Cancel</Link>
+        {mode === "edit" ? <Link className="admin-button admin-button-quiet" href="/admin/episodes/add">Cancel</Link> : null}
       </div>
       {notice ? <p className="admin-status">{notice}</p> : null}
       {mode === "edit" ? (
@@ -144,7 +149,9 @@ export function EpisodeForm({ mode, record }) {
             <button className="admin-button admin-button-danger" type="button" onClick={() => setConfirmDelete(true)}>Delete episode</button>
           )}
         </div>
-      ) : null}
+      ) : (
+        <Link className="admin-button admin-button-quiet" href="/admin/episodes/add">Back to index</Link>
+      )}
     </form>
   );
 }
