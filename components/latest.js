@@ -95,13 +95,7 @@ export function Latest({ slides }) {
     go(distance < 0 ? 1 : -1);
   }
 
-  if (count === 0) {
-    return (
-      <section id="latest" className="latest latest-empty">
-        <p>Explore the Latest</p>
-      </section>
-    );
-  }
+  if (count === 0) return null;
 
   return (
     <section id="latest" className="latest" aria-roledescription="carousel" aria-label="Explore the Latest">

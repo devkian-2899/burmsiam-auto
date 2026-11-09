@@ -4,13 +4,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Photo } from "./photo";
 
-const links = [
-  { href: "/#home", label: "HOME" },
-  { href: "/#aboutus", label: "ABOUT" },
-  { href: "/#latest", label: "EXPLORE THE LATEST" },
-  { href: "/#programs", label: "OUR PROGRAMS" },
-  { href: "/#contact", label: "CONTACT US" },
-];
+function menuLinks(hasLatest) {
+  return [
+    { href: "/#home", label: "HOME" },
+    { href: "/#aboutus", label: "ABOUT" },
+    { href: "/#latest", label: "EXPLORE THE LATEST", soon: !hasLatest },
+    { href: "/#programs", label: "OUR PROGRAMS" },
+    { href: "/#contact", label: "CONTACT US" },
+  ];
+}
 
 function volumeId(volume) {
   return `${volume.season}-${volume.volume}`;
@@ -35,7 +37,7 @@ function EpisodeCard({ episode }) {
   );
 }
 
-export function ProgramScreen({ name, icon, logo, cover, description, volumes }) {
+export function ProgramScreen({ name, icon, logo, cover, description, volumes, hasLatest = false }) {
   const [openId, setOpenId] = useState(volumes[0] ? volumeId(volumes[0]) : "");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -89,7 +91,7 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
         {menuOpen ? (
           <nav id="program-menu" className="site-menu">
             <p className="menu-title">{name}</p>
-            {links.map((link) => (
+            {menuLinks(hasLatest).map((link) => (
               link.soon ? (
                 <p key={link.label} className="menu-soon">
                   {link.label}

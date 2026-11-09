@@ -14,13 +14,15 @@ import { publicProgramMarks } from "../lib/public-catalog.mjs";
 export default function HomePage() {
   return (
     <>
-      <Header name={site.name} logo={site.headerLogo} />
+      <Suspense fallback={<Header name={site.name} logo={site.headerLogo} hasLatest={false} />}>
+        <HomeHeader />
+      </Suspense>
       <main>
         <Suspense fallback={<Hero slogan={site.slogan} youtubeId="" covers={site.covers} />}>
           <HomeFilm />
         </Suspense>
         <About />
-        <Suspense fallback={<p className="program-empty">Loading the latest…</p>}>
+        <Suspense fallback={null}>
           <HomeSlides />
         </Suspense>
         <Suspense fallback={<p className="program-empty">Loading programs…</p>}>
@@ -31,6 +33,11 @@ export default function HomePage() {
       <Footer />
     </>
   );
+}
+
+async function HomeHeader() {
+  const slides = await publicSlides();
+  return <Header name={site.name} logo={site.headerLogo} hasLatest={slides.length > 0} />;
 }
 
 async function HomeFilm() {
@@ -44,7 +51,9 @@ async function HomeFilm() {
 }
 
 async function HomeSlides() {
-  return <Latest slides={await publicSlides()} />;
+  const slides = await publicSlides();
+  if (slides.length === 0) return null;
+  return <Latest slides={slides} />;
 }
 
 async function ProgramMarks() {

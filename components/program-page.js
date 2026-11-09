@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { site } from "../content/site";
+import { publicSlides } from "../lib/public-home.mjs";
 import { publicProgram } from "../lib/public-catalog.mjs";
 import { Footer } from "./footer";
 import { ProgramScreen } from "./program-screen";
 
 export async function ProgramPage({ name }) {
-  const program = await publicProgram(name);
+  const [program, slides] = await Promise.all([publicProgram(name), publicSlides()]);
   if (!program) notFound();
   return (
     <>
@@ -17,6 +18,7 @@ export async function ProgramPage({ name }) {
         description={program.description}
         logo={site.headerLogo}
         volumes={program.volumes}
+        hasLatest={slides.length > 0}
       />
       <Footer />
     </>
