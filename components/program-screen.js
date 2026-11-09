@@ -68,9 +68,7 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
           </svg>
           <span className="visually-hidden">Back to programs</span>
         </Link>
-        {/* Local program marks are already sized for the header. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="program-mark" src={icon} alt={name} />
+        <h1 className="program-abbr">{name}</h1>
         <Link className="program-brand" href="/#home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="brand-logo" src={logo} alt="BurmSiam" />
@@ -112,7 +110,10 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
         ) : null}
         <div className="program-cover-shade" />
         <div className="program-cover-copy">
-          <h1>{name}</h1>
+          {icon ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className="program-cover-logo" src={icon} alt="" />
+          ) : null}
           {description ? <p>{description}</p> : null}
         </div>
       </section>

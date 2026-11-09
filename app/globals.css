@@ -441,10 +441,18 @@ a {
   height: 1.6rem;
 }
 
-.program-mark {
-  width: 2.8rem;
-  height: 2.8rem;
-  object-fit: contain;
+.program-abbr {
+  margin: 0;
+  min-width: 0;
+  max-width: min(46vw, 18rem);
+  overflow: hidden;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .program-brand {
@@ -484,16 +492,17 @@ a {
   text-align: center;
 }
 
-.program-cover-copy h1 {
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(1.7rem, 4vw, 2.6rem);
-  font-weight: 500;
-  letter-spacing: 0.12em;
+.program-cover-logo {
+  display: block;
+  width: auto;
+  max-width: min(12rem, 46vw);
+  height: clamp(4.4rem, 14vw, 7rem);
+  margin: 0 auto 0.85rem;
+  object-fit: contain;
 }
 
 .program-cover-copy p {
-  margin: 0.7rem 0 0;
+  margin: 0;
   color: rgba(244, 244, 244, 0.92);
   font-size: clamp(0.98rem, 2vw, 1.15rem);
   line-height: 1.55;
@@ -753,10 +762,12 @@ a {
     justify-self: start;
   }
 
-  .program-mark {
+  .program-abbr {
     justify-self: center;
-    width: 2.6rem;
-    height: 2.6rem;
+    max-width: 42vw;
+    font-size: clamp(0.95rem, 4.4vw, 1.25rem);
+    letter-spacing: 0.12em;
+    text-align: center;
   }
 
   .program-brand {
