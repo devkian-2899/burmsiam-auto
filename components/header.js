@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 const links = [
   { href: "#home", label: "HOME" },
   { href: "#aboutus", label: "ABOUT" },
-  { href: "#latest", label: "EXPLORE THE LATEST", soon: true },
+  { href: "#latest", label: "EXPLORE THE LATEST" },
   { href: "#programs", label: "OUR PROGRAMS" },
   { href: "#contact", label: "CONTACT US" },
 ];
 
-const sections = ["home", "aboutus", "programs", "contact"];
+const sections = ["home", "aboutus", "latest", "programs", "contact"];
 
 export function Header({ name, logo }) {
   const [open, setOpen] = useState(false);
