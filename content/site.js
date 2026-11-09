@@ -49,18 +49,18 @@ export const site = {
 
   // 12 PNG icons, 1080 × 1080, with no background. Each icon opens its own page.
   programs: [
-    { image: "/images/programs/BSS.png", name: "BSS", href: "/BSS" },
-    { image: "/images/programs/BSPS.png", name: "BSPS", href: "/BSPS" },
-    { image: "/images/programs/BSGP.png", name: "BSGP", href: "/BSGP" },
-    { image: "/images/programs/ABA.png", name: "ABA", href: "/ABA" },
-    { image: "/images/programs/VEU.png", name: "VEU", href: "/VEU" },
-    { image: "/images/programs/JDM.png", name: "JDM", href: "/JDM" },
-    { image: "/images/programs/SOA.png", name: "SOA", href: "/SOA" },
-    { image: "/images/programs/TWT.png", name: "TWT", href: "/TWT" },
-    { image: "/images/programs/HSD.png", name: "HSD", href: "/HSD" },
-    { image: "/images/programs/APA.png", name: "APA", href: "/APA" },
-    { image: "/images/programs/BSW.png", name: "BSW", href: "/BSW" },
-    { image: "/images/programs/BSN.png", name: "BSN", href: "/BSN" },
+    { image: "/images/programs/BSS.png", name: "BSS", href: "/BSS", cover: "/images/covers/cover-1.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/BSPS.png", name: "BSPS", href: "/BSPS", cover: "/images/covers/cover-2.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/BSGP.png", name: "BSGP", href: "/BSGP", cover: "/images/covers/cover-3.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/ABA.png", name: "ABA", href: "/ABA", cover: "/images/covers/cover-4.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/VEU.png", name: "VEU", href: "/VEU", cover: "/images/covers/cover-1.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/JDM.png", name: "JDM", href: "/JDM", cover: "/images/covers/cover-2.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/SOA.png", name: "SOA", href: "/SOA", cover: "/images/covers/cover-3.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/TWT.png", name: "TWT", href: "/TWT", cover: "/images/covers/cover-4.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/HSD.png", name: "HSD", href: "/HSD", cover: "/images/covers/cover-1.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/APA.png", name: "APA", href: "/APA", cover: "/images/covers/cover-2.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/BSW.png", name: "BSW", href: "/BSW", cover: "/images/covers/cover-3.jpg", description: "Episodes from this program, season by season." },
+    { image: "/images/programs/BSN.png", name: "BSN", href: "/BSN", cover: "/images/covers/cover-4.jpg", description: "Episodes from this program, season by season." },
   ],
 
   contact: {

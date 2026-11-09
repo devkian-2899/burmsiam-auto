@@ -16,7 +16,7 @@ function volumeId(volume) {
   return `${volume.season}-${volume.volume}`;
 }
 
-export function ProgramScreen({ name, icon, logo, volumes }) {
+export function ProgramScreen({ name, icon, logo, cover, description, volumes }) {
   const [openId, setOpenId] = useState(volumes[0] ? volumeId(volumes[0]) : "");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -87,8 +87,18 @@ export function ProgramScreen({ name, icon, logo, volumes }) {
           </nav>
         ) : null}
       </header>
+      <section className="program-cover">
+        {cover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="program-cover-photo" src={cover} alt="" />
+        ) : null}
+        <div className="program-cover-shade" />
+        <div className="program-cover-copy">
+          <h1>{name}</h1>
+          {description ? <p>{description}</p> : null}
+        </div>
+      </section>
       <main className="program-stage">
-        <h1 className="visually-hidden">{name}</h1>
         {volumes.length === 0 ? <p className="program-empty">Episodes will appear here.</p> : null}
         {volumes.map((volume) => {
           const id = volumeId(volume);
