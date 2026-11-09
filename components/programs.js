@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { Photo } from "./photo";
 
 function Card({ item }) {
   return (
-    <article className="program-card">
+    <Link className="program-card" href={item.href}>
       <Photo
         src={item.image.src}
         srcSet={item.image.srcSet}
@@ -10,7 +11,7 @@ function Card({ item }) {
         alt={item.name}
         className="program-photo"
       />
-    </article>
+    </Link>
   );
 }
 
