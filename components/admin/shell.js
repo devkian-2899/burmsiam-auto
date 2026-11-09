@@ -19,9 +19,13 @@ const groups = [
   {
     label: "Episode Management",
     items: [
-      { href: "/admin/episodes/programs", label: "Add more Program" },
-      { href: "/admin/episodes/seasons", label: "Add more Season" },
-      { href: "/admin/episodes/add", label: "Add more episodes" },
+      { href: "/admin/episodes/programs", label: "Programs" },
+      { href: "/admin/episodes/seasons", label: "Seasons" },
+      {
+        href: "/admin/episodes/add",
+        label: "Episodes",
+        match: ["/admin/episodes/add", "/admin/episodes/new", "/admin/episodes/edit"],
+      },
     ],
   },
   {
@@ -30,8 +34,9 @@ const groups = [
   },
 ];
 
-function active(path, href) {
-  return path === href || path.startsWith(`${href}/`);
+function active(path, item) {
+  const hrefs = item.match || [item.href];
+  return hrefs.some((href) => path === href || path.startsWith(`${href}/`));
 }
 
 function LogoutButton() {
@@ -82,7 +87,7 @@ export function AdminShell({ children }) {
           {groups.map((group) => (
             <div key={group.label}>
               {group.href ? (
-                <Link className={active(path, group.href) ? "is-active" : ""} href={group.href}>
+                <Link className={active(path, group) ? "is-active" : ""} href={group.href}>
                   {group.label}
                 </Link>
               ) : (
@@ -91,7 +96,7 @@ export function AdminShell({ children }) {
               {group.items ? (
                 <div className="admin-side-sub">
                   {group.items.map((item) => (
-                    <Link key={item.href} className={active(path, item.href) ? "is-active" : ""} href={item.href}>
+                    <Link key={item.href} className={active(path, item) ? "is-active" : ""} href={item.href}>
                       {item.label}
                     </Link>
                   ))}

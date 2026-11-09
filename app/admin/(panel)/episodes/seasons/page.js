@@ -1,34 +1,30 @@
-import { PreviewSave } from "../../../../../components/admin/preview-save";
-import { site } from "../../../../../content/site";
+"use client";
 
-export const metadata = {
-  title: "Add season · BurmSiamAuto",
-};
+import { RecordList } from "../../../../../components/admin/record-list";
 
-export default function AddSeasonPage() {
+export default function SeasonsPage() {
   return (
-      <section className="admin-card">
-        <h1>Add more Season</h1>
-        <p className="admin-lead">Add a season, and a volume inside it, to a program.</p>
-        <PreviewSave label="Add season">
-          <label>
-            <span>Program</span>
-            <select name="program" defaultValue="">
-              <option value="">Select a program</option>
-              {site.programs.map((program) => (
-                <option key={program.name} value={program.name}>{program.name}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Season number</span>
-            <input name="season" type="number" min="1" defaultValue="1" />
-          </label>
-          <label>
-            <span>Volume number</span>
-            <input name="volume" type="number" min="1" defaultValue="1" />
-          </label>
-        </PreviewSave>
-      </section>
+    <RecordList
+      title="Seasons"
+      lead="A season and volume pair can be chosen on any episode."
+      endpoint="/api/admin/seasons"
+      collection="seasons"
+      newHref="/admin/episodes/seasons/new"
+      editBase="/admin/episodes/seasons/edit"
+      searchPlaceholder="Season or volume"
+      empty="No seasons yet."
+      columns={[
+        { key: "label", label: "Season" },
+        { key: "season", label: "Season number" },
+        { key: "volume", label: "Volume" },
+      ]}
+      renderRow={(row) => (
+        <>
+          <td>{row.label}</td>
+          <td>{row.season}</td>
+          <td>{row.volume}</td>
+        </>
+      )}
+    />
   );
 }

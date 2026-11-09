@@ -1,9 +1,9 @@
-import { ProgramPage } from "../../components/program-page";
+import { ProgramRoute } from "../../components/program-page";
 
 export const metadata = {
   title: "BSN · BurmSiamAuto",
 };
 
 export default function Page() {
-  return <ProgramPage name="BSN" />;
+  return <ProgramRoute name="BSN" />;
 }

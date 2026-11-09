@@ -16,6 +16,24 @@ function volumeId(volume) {
   return `${volume.season}-${volume.volume}`;
 }
 
+function EpisodeCard({ episode }) {
+  const body = (
+    <>
+      <div className="episode-photo">
+        <Photo src={episode.image} alt="" className="episode-photo-img" />
+      </div>
+      <h3>{episode.title}</h3>
+      {episode.description ? <p className="episode-copy">{episode.description}</p> : null}
+    </>
+  );
+  if (!episode.link) return <article className="episode-card">{body}</article>;
+  return (
+    <a className="episode-card" href={episode.link} target="_blank" rel="noreferrer">
+      {body}
+    </a>
+  );
+}
+
 export function ProgramScreen({ name, icon, logo, cover, description, volumes }) {
   const [openId, setOpenId] = useState(volumes[0] ? volumeId(volumes[0]) : "");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -122,12 +140,7 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
               </h2>
               <div className="episode-grid">
                 {volume.episodes.map((episode) => (
-                  <article key={`${id}-${episode.episode}`} className="episode-card">
-                    <div className="episode-photo">
-                      <Photo src={episode.image} alt="" className="episode-photo-img" />
-                    </div>
-                    <h3>{episode.title}</h3>
-                  </article>
+                  <EpisodeCard key={`${id}-${episode.episode}`} episode={episode} />
                 ))}
               </div>
             </section>

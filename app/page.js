@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { About } from "../components/about";
 import { Contact } from "../components/contact";
 import { Footer } from "../components/footer";
@@ -7,6 +8,7 @@ import { Latest } from "../components/latest";
 import { Programs } from "../components/programs";
 import { site } from "../content/site";
 import { driveSources, youtubeId } from "../lib/media.mjs";
+import { publicProgramMarks } from "../lib/public-catalog.mjs";
 
 export default function HomePage() {
   const slides = site.slides
@@ -16,13 +18,6 @@ export default function HomePage() {
       href: String(slide.href || "").trim(),
       image: driveSources(slide.image, [1280, 1920, 2560, 3840]),
     }));
-
-  const programs = site.programs.map((item, index) => ({
-    name: item.name || `Program ${index + 1}`,
-    href: item.href,
-    // Drive turns these PNGs into black-backed JPEGs at 540px and below.
-    image: driveSources(item.image, [720, 1080]),
-  }));
 
   return (
     <>
@@ -35,10 +30,16 @@ export default function HomePage() {
         />
         <About />
         <Latest slides={slides} />
-        <Programs items={programs} />
+        <Suspense fallback={<p className="program-empty">Loading programs…</p>}>
+          <ProgramMarks />
+        </Suspense>
         <Contact contact={site.contact} />
       </main>
       <Footer />
     </>
   );
+}
+
+async function ProgramMarks() {
+  return <Programs items={await publicProgramMarks()} />;
 }

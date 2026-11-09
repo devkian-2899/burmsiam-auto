@@ -1,24 +1,30 @@
-import { PreviewSave } from "../../../../../components/admin/preview-save";
+"use client";
 
-export const metadata = {
-  title: "Add program · BurmSiamAuto",
-};
+import { RecordList } from "../../../../../components/admin/record-list";
 
-export default function AddProgramPage() {
+export default function ProgramsPage() {
   return (
-      <section className="admin-card">
-        <h1>Add more Program</h1>
-        <p className="admin-lead">A new program mark for the public program row.</p>
-        <PreviewSave label="Add program">
-          <label>
-            <span>Abbreviation</span>
-            <input name="code" placeholder="BSS" />
-          </label>
-          <label>
-            <span>Program name</span>
-            <input name="name" />
-          </label>
-        </PreviewSave>
-      </section>
+    <RecordList
+      title="Programs"
+      lead="Create, edit, and remove programs."
+      endpoint="/api/admin/programs"
+      collection="programs"
+      newHref="/admin/episodes/programs/new"
+      editBase="/admin/episodes/programs/edit"
+      searchPlaceholder="Abbreviation or name"
+      empty="No programs yet."
+      columns={[
+        { key: "abbr", label: "Abbreviation" },
+        { key: "name", label: "Name" },
+        { key: "description", label: "Description" },
+      ]}
+      renderRow={(row) => (
+        <>
+          <td>{row.abbr}</td>
+          <td>{row.name}</td>
+          <td>{row.description}</td>
+        </>
+      )}
+    />
   );
 }

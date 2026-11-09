@@ -574,6 +574,8 @@ a {
 }
 
 .episode-card {
+  display: block;
+  color: inherit;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 18px;
@@ -604,6 +606,15 @@ a {
   padding: 0.95rem 0.7rem 1.05rem;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   font-weight: 500;
+  text-align: center;
+}
+
+.episode-copy {
+  margin: 0;
+  padding: 0 0.85rem 1rem;
+  color: rgba(244, 244, 244, 0.82);
+  font-size: 0.92rem;
+  line-height: 1.45;
   text-align: center;
 }
 
@@ -1171,6 +1182,7 @@ a {
   padding: 0 1rem 0 1.15rem;
   background: #fff;
   border-bottom: 1px solid #e1e4e6;
+  box-shadow: inset 0 -2px 0 #b7e8e8;
 }
 
 .admin-bar-left {
@@ -1242,7 +1254,9 @@ a {
 
 .admin-side a:hover,
 .admin-side a.is-active {
-  background: #eef0f1;
+  background: #f3fbfb;
+  color: #146466;
+  box-shadow: inset 3px 0 0 #58e3e3;
 }
 
 .admin-side-group {
@@ -1330,7 +1344,8 @@ a {
 }
 
 .admin input,
-.admin select {
+.admin select,
+.admin textarea {
   width: 100%;
   min-height: 2.6rem;
   padding: 0.45rem 0.7rem;
@@ -1341,9 +1356,16 @@ a {
   font: inherit;
 }
 
+.admin textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
 .admin input:focus,
-.admin select:focus {
-  outline: 2px solid #c5ced0;
+.admin select:focus,
+.admin textarea:focus {
+  outline: 2px solid #8fe3e3;
+  border-color: #7ecccc;
   outline-offset: 1px;
 }
 
@@ -1468,7 +1490,7 @@ a {
   padding: 0;
   border: 0;
   background: none;
-  color: #243033;
+  color: #146466;
   font: inherit;
   cursor: pointer;
 }

@@ -1,21 +1,32 @@
-import { volumesFor } from "../content/catalog";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { site } from "../content/site";
+import { publicProgram } from "../lib/public-catalog.mjs";
 import { Footer } from "./footer";
 import { ProgramScreen } from "./program-screen";
 
-export function ProgramPage({ name }) {
-  const program = site.programs.find((item) => item.name === name) || {};
+export async function ProgramPage({ name }) {
+  const program = await publicProgram(name);
+  if (!program) notFound();
   return (
     <>
       <ProgramScreen
-        name={name}
-        icon={`/images/programs/${name}.png`}
-        cover={program.cover || ""}
-        description={program.description || ""}
+        name={program.name}
+        icon={program.icon}
+        cover={program.cover}
+        description={program.description}
         logo={site.headerLogo}
-        volumes={volumesFor(name)}
+        volumes={program.volumes}
       />
       <Footer />
     </>
+  );
+}
+
+export function ProgramRoute({ name }) {
+  return (
+    <Suspense fallback={<p className="program-empty">Loading episodes…</p>}>
+      <ProgramPage name={name} />
+    </Suspense>
   );
 }
