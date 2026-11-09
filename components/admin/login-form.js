@@ -8,7 +8,7 @@ export function LoginForm() {
 
   function onSubmit(event) {
     event.preventDefault();
-    router.push("/admin/users");
+    router.push("/admin/visual");
   }
 
   return (
