@@ -20,11 +20,13 @@ export function Programs({ items }) {
     <section id="programs" className="programs">
       <div className="programs-inner">
         <h2>OUR PROGRAM</h2>
-        <div className="program-list" tabIndex={0} aria-label="Our programs">
-          {items.map((item, index) => (
-            <Card key={`${item.name}-${index}`} item={item} />
-          ))}
-        </div>
+        {items.length === 0 ? <p className="program-empty">No programs yet.</p> : (
+          <div className="program-list" tabIndex={0} aria-label="Our programs">
+            {items.map((item, index) => (
+              <Card key={`${item.name}-${index}`} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
