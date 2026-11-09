@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { readPhoto } from "./read-photo";
 
 const empty = {
   episode: "",
@@ -22,6 +23,8 @@ export function EpisodeForm({ mode, record }) {
   const [lists, setLists] = useState("loading");
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
+  const [reading, setReading] = useState(0);
+  const [fileKey, setFileKey] = useState(0);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => {
@@ -48,6 +51,21 @@ export function EpisodeForm({ mode, record }) {
     setValues((current) => ({ ...current, [name]: value }));
   }
 
+  async function setCover(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setNotice("");
+    setReading((count) => count + 1);
+    try {
+      const photo = await readPhoto(file, 1920);
+      setValues((current) => ({ ...current, photo }));
+    } catch (error) {
+      setNotice(error.message || "That photo could not be read.");
+    } finally {
+      setReading((count) => count - 1);
+    }
+  }
+
   async function onSubmit(event) {
     event.preventDefault();
     setNotice("");
@@ -69,6 +87,7 @@ export function EpisodeForm({ mode, record }) {
       return;
     }
     setValues(empty);
+    setFileKey((key) => key + 1);
     setNotice("Saved. You can add another.");
   }
 
@@ -87,7 +106,7 @@ export function EpisodeForm({ mode, record }) {
   return (
     <form className="admin-card" onSubmit={onSubmit}>
       <h1>{mode === "edit" ? "Edit episode" : "New episode"}</h1>
-      <p className="admin-lead">The program and season lists come from the database.</p>
+      <p className="admin-lead">The cover is saved with the episode. Program and season come from the database.</p>
       {lists === "loading" ? <p className="admin-status">Loading lists…</p> : null}
       {lists === "error" ? <p className="admin-status">The program and season lists could not be loaded.</p> : null}
       {lists === "ready" && programs.length === 0 ? <p className="admin-status">Add a program before saving an episode.</p> : null}
@@ -129,11 +148,12 @@ export function EpisodeForm({ mode, record }) {
         <input name="link" value={values.link} onChange={setField} placeholder="https://" />
       </label>
       <label>
-        <span>Photo address</span>
-        <input name="photo" value={values.photo} onChange={setField} placeholder="https://" />
+        <span>Cover</span>
+        <input key={`cover-${fileKey}`} name="photo" type="file" accept="image/*" onChange={setCover} />
+        {values.photo ? <img className="admin-photo-preview admin-photo-preview-wide" src={values.photo} alt="" /> : null}
       </label>
       <div className="admin-actions">
-        <button className="admin-button" type="submit" disabled={pending}>{pending ? "Saving…" : "Save"}</button>
+        <button className="admin-button" type="submit" disabled={pending || reading > 0}>{pending ? "Saving…" : "Save"}</button>
         {mode === "edit" ? <Link className="admin-button admin-button-quiet" href="/admin/episodes/add">Cancel</Link> : null}
       </div>
       {notice ? <p className="admin-status">{notice}</p> : null}
