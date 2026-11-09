@@ -53,7 +53,7 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
         {/* Local program marks are already sized for the header. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="program-mark" src={icon} alt={name} />
-        <Link className="program-brand" href="/">
+        <Link className="program-brand" href="/#home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="brand-logo" src={logo} alt="BurmSiam" />
         </Link>

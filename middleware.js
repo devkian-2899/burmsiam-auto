@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { readEnv } from "./lib/env.mjs";
 import { readSession, SESSION_COOKIE } from "./lib/session-cookie.mjs";
 
 function isPanel(pathname) {
@@ -14,7 +15,7 @@ export async function middleware(request) {
   if (!isPanel(pathname)) return NextResponse.next();
   const payload = await readSession(
     request.cookies.get(SESSION_COOKIE)?.value,
-    process.env.BURMSIAM_SESSION_SECRET?.trim() ?? "",
+    readEnv("BURMSIAM_SESSION_SECRET"),
   );
   if (payload) return NextResponse.next();
   if (pathname.startsWith("/api/")) {

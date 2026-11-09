@@ -1,9 +1,10 @@
 import { checkPassword, ensureAdmin, findByIdentity, openSession, sameOrigin, authConfigured } from "../../../../lib/auth.mjs";
-import { databaseAvailable, sql } from "../../../../lib/db.mjs";
+import { databaseIssue, sql } from "../../../../lib/db.mjs";
 
 export async function POST(request) {
   if (!sameOrigin(request)) return Response.json({ error: "Sign-in was refused." }, { status: 403 });
-  if (!databaseAvailable()) return Response.json({ error: "The database is not connected yet." }, { status: 503 });
+  const issue = databaseIssue();
+  if (issue) return Response.json({ error: issue }, { status: 503 });
   if (!authConfigured()) return Response.json({ error: "Sign-in is not configured yet." }, { status: 503 });
 
   const body = await request.json().catch(() => ({}));
@@ -12,12 +13,16 @@ export async function POST(request) {
   if (!identity || !password) {
     return Response.json({ error: "Enter your account and password." }, { status: 400 });
   }
-  if (await tooManyAttempts(identity)) {
-    return Response.json({ error: "Too many tries. Wait a few minutes and try again." }, { status: 429 });
+  let staff;
+  try {
+    await ensureAdmin();
+    if (await tooManyAttempts(identity)) {
+      return Response.json({ error: "Too many tries. Wait a few minutes and try again." }, { status: 429 });
+    }
+    staff = await findByIdentity(identity);
+  } catch {
+    return Response.json({ error: "The database refused the connection. Check the Neon connection string on Vercel." }, { status: 503 });
   }
-
-  await ensureAdmin();
-  const staff = await findByIdentity(identity);
   if (!staff || !(await checkPassword(staff, password))) {
     await sql("insert into login_attempts (identity) values ($1)", [identity.toLowerCase().slice(0, 200)]);
     return Response.json({ error: "That sign-in does not match an account." }, { status: 401 });
