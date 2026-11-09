@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { readPhoto } from "./read-photo";
 
-const empty = { name: "", abbr: "", description: "", cover: "", icon: "" };
+const empty = { name: "", abbr: "", sortingno: "", description: "", cover: "", icon: "" };
 
 export function ProgramForm({ mode, record }) {
   const router = useRouter();
@@ -76,11 +76,15 @@ export function ProgramForm({ mode, record }) {
   return (
     <form className="admin-card" onSubmit={onSubmit}>
       <h1>{mode === "edit" ? "Edit program" : "New program"}</h1>
-      <p className="admin-lead">The abbreviation is the public page, such as /BSS. Photos are saved with the program.</p>
+      <p className="admin-lead">The abbreviation is the public page, such as /BSS. A smaller sorting number appears first. Photos are saved with the program.</p>
       <div className="admin-fields">
         <label>
           <span>Abbreviation</span>
           <input name="abbr" value={values.abbr} onChange={setField} placeholder="BSS" required />
+        </label>
+        <label>
+          <span>Sorting no</span>
+          <input name="sortingno" type="number" step="1" value={values.sortingno} onChange={setField} required />
         </label>
         <label>
           <span>Name</span>

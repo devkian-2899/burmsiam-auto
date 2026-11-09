@@ -14,12 +14,14 @@ export default function ProgramsPage() {
       searchPlaceholder="Abbreviation or name"
       empty="No programs yet."
       columns={[
+        { key: "sortingno", label: "Sorting no" },
         { key: "abbr", label: "Abbreviation" },
         { key: "name", label: "Name" },
         { key: "description", label: "Description" },
       ]}
       renderRow={(row) => (
         <>
+          <td>{row.sortingno}</td>
           <td>{row.abbr}</td>
           <td>{row.name}</td>
           <td>{row.description}</td>

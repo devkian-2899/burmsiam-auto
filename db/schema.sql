@@ -10,8 +10,11 @@ create table if not exists programs (
   description text not null default '',
   cover text not null default '',
   icon text not null default '',
+  sortingno integer not null default 0,
   unique (abbr)
 );
+
+alter table programs add column if not exists sortingno integer not null default 0;
 
 create table if not exists seasons (
   id bigint generated always as identity primary key,
