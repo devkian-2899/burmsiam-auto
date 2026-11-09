@@ -116,8 +116,7 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
           {description ? <p>{description}</p> : null}
         </div>
       </section>
-      <main className="program-stage">
-        {volumes.length === 0 ? <p className="program-empty">Episodes will appear here.</p> : null}
+      {volumes.length > 0 ? <main className="program-stage">
         {volumes.map((volume) => {
           const id = volumeId(volume);
           const open = openId === id;
@@ -140,13 +139,13 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes })
               </h2>
               <div className="episode-grid">
                 {volume.episodes.map((episode) => (
-                  <EpisodeCard key={`${id}-${episode.episode}`} episode={episode} />
+                  <EpisodeCard key={episode.id || `${id}-${episode.episode}`} episode={episode} />
                 ))}
               </div>
             </section>
           );
         })}
-      </main>
+      </main> : null}
     </>
   );
 }
