@@ -425,6 +425,7 @@ a.latest-slide {
   z-index: 50;
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   height: var(--header);
   padding: 0 clamp(1.1rem, 3vw, 2.5rem);
   background: var(--night);
@@ -432,12 +433,18 @@ a.latest-slide {
 }
 
 .program-back {
-  display: none;
+  display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
   color: var(--ink);
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.program-back:hover {
+  color: var(--cyan);
 }
 
 .program-back svg {
@@ -515,9 +522,10 @@ a.latest-slide {
 .program-stage {
   position: relative;
   isolation: isolate;
-  width: min(980px, 100%);
+  width: 70%;
+  max-width: 100%;
   margin-inline: auto;
-  padding: clamp(1rem, 3vw, 2rem) clamp(0.85rem, 3vw, 1.4rem) 2.75rem;
+  padding: clamp(1rem, 3vw, 2rem) 0 2.75rem;
 }
 
 .program-stage::before {
@@ -922,6 +930,12 @@ a.latest-slide {
 }
 
 @media (min-width: 861px) {
+  .program-abbr {
+    flex: 1;
+    max-width: none;
+    text-align: center;
+  }
+
   .volume-toggle {
     pointer-events: none;
   }
