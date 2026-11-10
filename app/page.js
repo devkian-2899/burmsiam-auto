@@ -8,8 +8,9 @@ import { Latest } from "../components/latest";
 import { Programs } from "../components/programs";
 import { site } from "../content/site";
 import { youtubeId } from "../lib/media.mjs";
+import { localProgramMarks } from "../content/program-marks.js";
 import { publicSlides, publicYoutube } from "../lib/public-home.mjs";
-import { publicProgramMarks } from "../lib/public-catalog.mjs";
+// import { publicProgramMarks } from "../lib/public-catalog.mjs";
 
 export default function HomePage() {
   return (
@@ -25,9 +26,7 @@ export default function HomePage() {
         <Suspense fallback={null}>
           <HomeSlides />
         </Suspense>
-        <Suspense fallback={<p className="program-empty">Loading programs…</p>}>
-          <ProgramMarks />
-        </Suspense>
+        <Programs items={localProgramMarks} />
         <Contact contact={site.contact} />
       </main>
       <Footer />
@@ -56,6 +55,6 @@ async function HomeSlides() {
   return <Latest slides={slides} />;
 }
 
-async function ProgramMarks() {
-  return <Programs items={await publicProgramMarks()} />;
-}
+// async function ProgramMarks() {
+//   return <Programs items={await publicProgramMarks()} />;
+// }
