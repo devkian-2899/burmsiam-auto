@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { EPISODE_POST_TYPES } from "../../lib/catalog-rules.mjs";
+import { EPISODE_POST_TYPE_OPTIONS, episodePostTypeLabel } from "../../lib/catalog-rules.mjs";
 import { readPhoto } from "./read-photo";
 
 const PLATFORMS = [
@@ -50,7 +50,7 @@ function fromRecord(record) {
     youtubeUrl: record?.youtubeUrl || "",
     tiktokOn: Boolean(record?.tiktokUrl),
     tiktokUrl: record?.tiktokUrl || "",
-    postType: record?.postType || "",
+    postType: episodePostTypeLabel(record?.postType),
   };
 }
 
@@ -206,10 +206,12 @@ export function EpisodeForm({ mode, record }) {
         <span>Description</span>
         <textarea name="description" value={values.description} onChange={setField} rows={4} />
       </label>
-      <label>
-        <span>Link</span>
-        <input name="link" value={values.link} onChange={setField} placeholder="https://" />
-      </label>
+      {mode === "edit" ? (
+        <label>
+          <span>Link</span>
+          <input name="link" value={values.link} onChange={setField} placeholder="https://" />
+        </label>
+      ) : null}
       <fieldset className="admin-availability">
         <legend>Availability</legend>
         <p className="admin-lead">Choose where this episode is published. A link is saved only for checked platforms.</p>
@@ -241,8 +243,8 @@ export function EpisodeForm({ mode, record }) {
           <span>Post type</span>
           <select name="postType" value={values.postType} onChange={setField}>
             <option value="">Select post type</option>
-            {EPISODE_POST_TYPES.map((type) => (
-              <option key={type} value={type}>{type}</option>
+            {EPISODE_POST_TYPE_OPTIONS.map((type) => (
+              <option key={type.code} value={type.label}>{type.label}</option>
             ))}
           </select>
         </label>
