@@ -31,15 +31,18 @@ function PostTypeBadge({ postType }) {
   if (!badge) return null;
   const { Icon, label } = badge;
   return (
-    <div className="episode-post-type" aria-label={label}>
-      <Icon />
-      <span>{label}</span>
+    <div className="episode-post-type">
+      <div className="episode-post-type-band" aria-label={label}>
+        <Icon />
+        <span>{label}</span>
+      </div>
     </div>
   );
 }
 
 function hasUrl(value) {
-  return Boolean(String(value ?? "").trim());
+  if (value == null) return false;
+  return String(value).trim().length > 0;
 }
 
 function SocialRow({ episode }) {
@@ -62,9 +65,8 @@ function SocialRow({ episode }) {
           );
         }
         return (
-          <span key={key} className="episode-social-link is-muted" aria-hidden="true">
+          <span key={key} className="episode-social-link is-muted" role="img" aria-label={`${label} unavailable`}>
             <Icon />
-            <span className="visually-hidden">{label} unavailable</span>
           </span>
         );
       })}
