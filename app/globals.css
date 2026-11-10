@@ -616,19 +616,72 @@ a.latest-slide {
 
 .episode-card h3 {
   margin: 0;
-  padding: 0.95rem 0.7rem 1.05rem;
+  padding: 0.95rem 0.7rem 0.45rem;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   font-weight: 500;
   text-align: center;
 }
 
+.episode-body {
+  padding: 0 0.85rem 1rem;
+}
+
+.episode-post-type {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 0.55rem;
+  color: var(--cyan);
+}
+
+.episode-post-type .icon {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
 .episode-copy {
   margin: 0;
-  padding: 0 0.85rem 1rem;
+  padding: 0 0 0.85rem;
   color: rgba(244, 244, 244, 0.82);
   font-size: 0.92rem;
-  line-height: 1.45;
   text-align: center;
+  line-height: 1.5;
+}
+
+.episode-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 0.15rem;
+}
+
+.episode-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+}
+
+.episode-social-link .icon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.episode-social-link.is-active {
+  color: var(--cyan);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.episode-social-link.is-active:hover {
+  color: #8ef0f0;
+  transform: translateY(-1px);
+}
+
+.episode-social-link.is-muted {
+  color: rgba(244, 244, 244, 0.28);
+  pointer-events: none;
 }
 
 .contact {
@@ -832,6 +885,7 @@ a.latest-slide {
 
   .volume .episode-grid {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

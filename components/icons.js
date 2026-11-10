@@ -83,3 +83,34 @@ export function IconLink() {
     </Icon>
   );
 }
+
+/** 9:16 reel-style frame */
+export function IconPostReel() {
+  return (
+    <Icon>
+      <rect x="8" y="3" width="8" height="18" rx="1.5" {...stroke} />
+      <path d="M11 14l2.2-1.2v4.4L11 16z" fill="currentColor" stroke="none" />
+    </Icon>
+  );
+}
+
+/** 16:9 video frame */
+export function IconPostVideo() {
+  return (
+    <Icon>
+      <rect x="3" y="7" width="18" height="10" rx="1.5" {...stroke} />
+      <path d="M11 10.5v3.5l3.8-1.8-3.8-1.7z" fill="currentColor" stroke="none" />
+    </Icon>
+  );
+}
+
+/** Carousel / multi-photo stack */
+export function IconPostCarousel() {
+  return (
+    <Icon>
+      <rect x="5" y="6" width="11" height="8" rx="1.2" {...stroke} />
+      <rect x="8" y="9" width="11" height="8" rx="1.2" {...stroke} />
+      <rect x="11" y="12" width="11" height="8" rx="1.2" {...stroke} />
+    </Icon>
+  );
+}

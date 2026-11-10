@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Photo } from "./photo";
+import { EpisodeCard } from "./episode-card";
 
 function menuLinks(hasLatest) {
   return [
@@ -16,25 +16,6 @@ function menuLinks(hasLatest) {
 
 function volumeId(volume) {
   return `${volume.season}-${volume.volume}`;
-}
-
-function EpisodeCard({ episode }) {
-  const body = (
-    <>
-      <div className="episode-photo">
-        <Photo src={episode.image} alt="" className="episode-photo-img" />
-      </div>
-      <h3>{episode.title}</h3>
-      {episode.description ? <p className="episode-copy">{episode.description}</p> : null}
-    </>
-  );
-  const href = String(episode.link || "").trim();
-  if (!href) return <article className="episode-card">{body}</article>;
-  return (
-    <a className="episode-card" href={href} target="_blank" rel="noreferrer">
-      {body}
-    </a>
-  );
 }
 
 export function ProgramScreen({ name, icon, logo, cover, description, volumes, hasLatest = false }) {
