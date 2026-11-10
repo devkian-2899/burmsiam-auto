@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { seasonLabel } from "../lib/catalog-rules.mjs";
 import { EpisodeCard } from "./episode-card";
 
 function menuLinks(hasLatest) {
@@ -114,9 +115,7 @@ export function ProgramScreen({ name, icon, logo, cover, description, volumes, h
                   aria-expanded={open}
                   onClick={() => toggleVolume(id)}
                 >
-                  <span>
-                    Season [{volume.season}], Volume [{volume.volume}]
-                  </span>
+                  <span>{seasonLabel(volume.season, volume.volume)}</span>
                   <svg className="volume-chevron" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" />
                   </svg>
