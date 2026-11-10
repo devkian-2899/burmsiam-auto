@@ -37,6 +37,12 @@ create table if not exists episodes (
 create index if not exists episodes_program_id_idx on episodes (program_id);
 create index if not exists episodes_season_id_idx on episodes (season_id);
 
+alter table episodes add column if not exists facebook_url text;
+alter table episodes add column if not exists instagram_url text;
+alter table episodes add column if not exists youtube_url text;
+alter table episodes add column if not exists tiktok_url text;
+alter table episodes add column if not exists post_type text;
+
 create table if not exists latest (
   id bigint generated always as identity primary key,
   photo text not null default '',

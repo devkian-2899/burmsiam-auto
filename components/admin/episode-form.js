@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { EPISODE_POST_TYPES } from "../../lib/catalog-rules.mjs";
 import { readPhoto } from "./read-photo";
+
+const PLATFORMS = [
+  { on: "facebookOn", url: "facebookUrl", label: "Facebook", banner: "Add Facebook Link..." },
+  { on: "instagramOn", url: "instagramUrl", label: "Instagram", banner: "Add Instagram Link..." },
+  { on: "youtubeOn", url: "youtubeUrl", label: "YouTube", banner: "Add YouTube Link..." },
+  { on: "tiktokOn", url: "tiktokUrl", label: "TikTok", banner: "Add TikTok Link..." },
+];
 
 const empty = {
   episodeMajor: "",
@@ -14,6 +22,15 @@ const empty = {
   photo: "",
   programId: "",
   seasonId: "",
+  facebookOn: false,
+  facebookUrl: "",
+  instagramOn: false,
+  instagramUrl: "",
+  youtubeOn: false,
+  youtubeUrl: "",
+  tiktokOn: false,
+  tiktokUrl: "",
+  postType: "",
 };
 
 function fromRecord(record) {
@@ -25,6 +42,15 @@ function fromRecord(record) {
     ...record,
     episodeMajor: match?.[1] || plain,
     episodeMinor: match?.[2] || "",
+    facebookOn: Boolean(record?.facebookUrl),
+    facebookUrl: record?.facebookUrl || "",
+    instagramOn: Boolean(record?.instagramUrl),
+    instagramUrl: record?.instagramUrl || "",
+    youtubeOn: Boolean(record?.youtubeUrl),
+    youtubeUrl: record?.youtubeUrl || "",
+    tiktokOn: Boolean(record?.tiktokUrl),
+    tiktokUrl: record?.tiktokUrl || "",
+    postType: record?.postType || "",
   };
 }
 
@@ -62,6 +88,16 @@ export function EpisodeForm({ mode, record }) {
   function setField(event) {
     const { name, value } = event.target;
     setValues((current) => ({ ...current, [name]: value }));
+  }
+
+  function setPlatform(event) {
+    const { name, checked } = event.target;
+    const platform = PLATFORMS.find((item) => item.on === name);
+    setValues((current) => ({
+      ...current,
+      [name]: checked,
+      ...(platform && !checked ? { [platform.url]: "" } : null),
+    }));
   }
 
   function setDigits(name, event) {
@@ -174,6 +210,43 @@ export function EpisodeForm({ mode, record }) {
         <span>Link</span>
         <input name="link" value={values.link} onChange={setField} placeholder="https://" />
       </label>
+      <fieldset className="admin-availability">
+        <legend>Availability</legend>
+        <p className="admin-lead">Choose where this episode is published. A link is saved only for checked platforms.</p>
+        {PLATFORMS.map((platform) => (
+          <div key={platform.on} className="admin-availability-platform">
+            <label className="admin-check">
+              <input
+                type="checkbox"
+                name={platform.on}
+                checked={Boolean(values[platform.on])}
+                onChange={setPlatform}
+              />
+              <span>{platform.label}</span>
+            </label>
+            {values[platform.on] ? (
+              <div className="admin-availability-link">
+                <p className="admin-availability-banner">{platform.banner}</p>
+                <input
+                  name={platform.url}
+                  value={values[platform.url]}
+                  onChange={setField}
+                  placeholder="https://"
+                />
+              </div>
+            ) : null}
+          </div>
+        ))}
+        <label>
+          <span>Post type</span>
+          <select name="postType" value={values.postType} onChange={setField}>
+            <option value="">Select post type</option>
+            {EPISODE_POST_TYPES.map((type) => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+        </label>
+      </fieldset>
       <div className="admin-actions">
         <button className="admin-button" type="submit" disabled={pending || reading > 0}>{pending ? "Saving…" : "Save"}</button>
         {mode === "edit" ? <Link className="admin-button admin-button-quiet" href="/admin/episodes/add">Cancel</Link> : null}

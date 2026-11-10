@@ -1413,6 +1413,51 @@ a.latest-slide {
   object-fit: cover;
 }
 
+.admin-availability {
+  margin: 1.25rem 0 0;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid #d5dadd;
+  border-radius: 8px;
+}
+
+.admin-availability legend {
+  padding: 0 0.35rem;
+  color: #1c2426;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.admin-availability-platform + .admin-availability-platform {
+  margin-top: 0.65rem;
+}
+
+.admin-check {
+  display: flex !important;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.35rem !important;
+}
+
+.admin-check input[type="checkbox"] {
+  width: 1.05rem;
+  min-height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-availability-link {
+  margin-top: 0.45rem;
+}
+
+.admin-availability-banner {
+  margin: 0 0 0.35rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  background: #e8fbfb;
+  color: #0d4749;
+  font-size: 0.82rem;
+}
+
 .admin input:focus,
 .admin select:focus,
 .admin textarea:focus {
