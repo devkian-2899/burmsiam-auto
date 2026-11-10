@@ -10,7 +10,7 @@ const PLATFORMS = [
   { on: "facebookOn", url: "facebookUrl", label: "Facebook", banner: "Add Facebook Link..." },
   { on: "instagramOn", url: "instagramUrl", label: "Instagram", banner: "Add Instagram Link..." },
   { on: "youtubeOn", url: "youtubeUrl", label: "YouTube", banner: "Add YouTube Link..." },
-  { on: "tiktokOn", url: "tiktokUrl", label: "TikTok", banner: "Add TikTok Link..." },
+  { on: "tiktokOn", url: "tiktokUrl", label: "TikTok", banner: "TikTok Link..." },
 ];
 
 const empty = {
@@ -18,7 +18,6 @@ const empty = {
   episodeMinor: "",
   title: "",
   description: "",
-  link: "",
   photo: "",
   programId: "",
   seasonId: "",
@@ -206,12 +205,6 @@ export function EpisodeForm({ mode, record }) {
         <span>Description</span>
         <textarea name="description" value={values.description} onChange={setField} rows={4} />
       </label>
-      {mode === "edit" ? (
-        <label>
-          <span>Link</span>
-          <input name="link" value={values.link} onChange={setField} placeholder="https://" />
-        </label>
-      ) : null}
       <fieldset className="admin-availability">
         <legend>Availability</legend>
         <p className="admin-lead">Choose where this episode is published. A link is saved only for checked platforms.</p>

@@ -28,7 +28,6 @@ create table if not exists episodes (
   episode text not null default '',
   title text not null default '',
   description text not null default '',
-  link text not null default '',
   photo text not null default '',
   program_id bigint not null references programs (id),
   season_id bigint not null references seasons (id)
@@ -42,6 +41,8 @@ alter table episodes add column if not exists instagram_url text;
 alter table episodes add column if not exists youtube_url text;
 alter table episodes add column if not exists tiktok_url text;
 alter table episodes add column if not exists post_type text;
+
+alter table episodes drop column if exists link;
 
 create table if not exists latest (
   id bigint generated always as identity primary key,
