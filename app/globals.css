@@ -932,7 +932,14 @@ a.latest-slide {
 
   .volume .episode-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.65rem, 1.1vw, 0.85rem);
+  }
+}
+
+@media (min-width: 1320px) {
+  .volume .episode-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
