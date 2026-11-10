@@ -221,12 +221,11 @@ export function EpisodeForm({ mode, record }) {
             </label>
             {values[platform.on] ? (
               <div className="admin-availability-link">
-                <p className="admin-availability-banner">{platform.banner}</p>
                 <input
                   name={platform.url}
                   value={values[platform.url]}
                   onChange={setField}
-                  placeholder="https://"
+                  placeholder={platform.banner}
                 />
               </div>
             ) : null}

@@ -16,41 +16,37 @@ const SOCIALS = [
   { key: "tiktokUrl", label: "TikTok", Icon: IconTikTok },
 ];
 
-function PostTypeIcon({ postType }) {
+const POST_TYPE_BADGES = {
+  reel: { Icon: IconPostReel, label: "FHD | Vertical" },
+  reels: { Icon: IconPostReel, label: "FHD | Vertical" },
+  vdeo: { Icon: IconPostVideo, label: "4K | 16:9" },
+  video: { Icon: IconPostVideo, label: "4K | 16:9" },
+  caro: { Icon: IconPostCarousel, label: "Photo | Article" },
+  carousell: { Icon: IconPostCarousel, label: "Photo | Article" },
+};
+
+function PostTypeBadge({ postType }) {
   const code = String(postType || "").trim().toLowerCase();
-  if (!code) return null;
-  if (code === "reel" || code === "reels") {
-    return (
-      <span className="episode-post-type" title="Reels">
-        <IconPostReel />
-        <span className="visually-hidden">Reels</span>
-      </span>
-    );
-  }
-  if (code === "vdeo" || code === "video") {
-    return (
-      <span className="episode-post-type" title="Video">
-        <IconPostVideo />
-        <span className="visually-hidden">Video</span>
-      </span>
-    );
-  }
-  if (code === "caro" || code === "carousell") {
-    return (
-      <span className="episode-post-type" title="Carousell">
-        <IconPostCarousel />
-        <span className="visually-hidden">Carousell</span>
-      </span>
-    );
-  }
-  return null;
+  const badge = POST_TYPE_BADGES[code];
+  if (!badge) return null;
+  const { Icon, label } = badge;
+  return (
+    <div className="episode-post-type" aria-label={label}>
+      <Icon />
+      <span>{label}</span>
+    </div>
+  );
+}
+
+function hasUrl(value) {
+  return Boolean(String(value ?? "").trim());
 }
 
 function SocialRow({ episode }) {
   return (
     <div className="episode-social" aria-label="Where to watch">
       {SOCIALS.map(({ key, label, Icon }) => {
-        const href = episode[key];
+        const href = hasUrl(episode[key]) ? String(episode[key]).trim() : "";
         if (href) {
           return (
             <a
@@ -81,10 +77,10 @@ export function EpisodeCard({ episode }) {
     <article className="episode-card">
       <div className="episode-photo">
         <Photo src={episode.image} alt="" className="episode-photo-img" />
+        <PostTypeBadge postType={episode.postType} />
       </div>
       <h3>{episode.title}</h3>
       <div className="episode-body">
-        <PostTypeIcon postType={episode.postType} />
         {episode.description ? <p className="episode-copy">{episode.description}</p> : null}
         <SocialRow episode={episode} />
       </div>
