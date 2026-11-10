@@ -930,6 +930,10 @@ a.latest-slide {
 }
 
 @media (min-width: 861px) {
+  .program-stage {
+    width: 85%;
+  }
+
   .program-abbr {
     flex: 1;
     max-width: none;
