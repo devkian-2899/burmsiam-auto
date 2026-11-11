@@ -1584,6 +1584,15 @@ a.latest-slide {
   font-size: 0.82rem;
 }
 
+.admin input.admin-readonly,
+.admin input.admin-readonly:focus {
+  background: #eef1f2;
+  color: #4a5a5c;
+  cursor: default;
+  border-color: #c5d0d2;
+  outline: none;
+}
+
 .admin input:focus,
 .admin select:focus,
 .admin textarea:focus {
