@@ -910,8 +910,16 @@ a.latest-slide {
     cursor: pointer;
   }
 
+  .program-stage {
+    width: 100%;
+    max-width: none;
+    padding-inline: 0;
+  }
+
   .episode-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.65rem 0 0.85rem;
   }
 
   .volume:not(.is-open) .episode-grid {
