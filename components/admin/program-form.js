@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { finishAdminEdit } from "./finish-admin-edit";
 import { readPhoto } from "./read-photo";
 
 const empty = { name: "", abbr: "", sortingno: "", description: "", cover: "", icon: "" };
 
 export function ProgramForm({ mode, record }) {
-  const router = useRouter();
   const [values, setValues] = useState(record ? { ...empty, ...record } : empty);
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
@@ -52,8 +51,7 @@ export function ProgramForm({ mode, record }) {
       return;
     }
     if (mode === "edit") {
-      router.push("/admin/episodes/programs");
-      router.refresh();
+      finishAdminEdit("/admin/episodes/programs");
       return;
     }
     setValues(empty);
@@ -69,8 +67,7 @@ export function ProgramForm({ mode, record }) {
       setConfirmDelete(false);
       return;
     }
-    router.push("/admin/episodes/programs");
-    router.refresh();
+    finishAdminEdit("/admin/episodes/programs");
   }
 
   return (

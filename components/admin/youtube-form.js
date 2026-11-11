@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { finishAdminEdit } from "./finish-admin-edit";
 
 export function YoutubeForm() {
   const [currentLink, setCurrentLink] = useState("");
@@ -54,10 +55,7 @@ export function YoutubeForm() {
       setNotice(body.error || "The YouTube link was not saved.");
       return;
     }
-    const saved = body.youtube?.link || link;
-    setCurrentLink(saved);
-    setNewLink("");
-    setNotice("Saved. The home page film is updated.");
+    finishAdminEdit("/admin/content/youtube");
   }
 
   return (

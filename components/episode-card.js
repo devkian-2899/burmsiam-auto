@@ -82,12 +82,10 @@ export function EpisodeCard({ episode }) {
         <PostTypeBadge postType={episode.postType} />
       </div>
       <div className="episode-heading">
-        {episode.programIcon ? (
-          <Photo
-            src={episode.programIcon}
-            alt={episode.programAbbr || ""}
-            className="episode-program-mark"
-          />
+        {episode.programAbbr ? (
+          <p className="episode-program-abbr" aria-label={`Program ${episode.programAbbr}`}>
+            {episode.programAbbr}
+          </p>
         ) : null}
         <h3>{episode.title}</h3>
       </div>

@@ -44,5 +44,5 @@ export function CatalogEditor({ endpoint, recordKey, missing, Form }) {
       </section>
     );
   }
-  return <Form mode="edit" record={record} />;
+  return <Form key={id} mode="edit" record={record} />;
 }

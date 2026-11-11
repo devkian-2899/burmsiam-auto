@@ -48,5 +48,5 @@ export function EditAccount() {
       </section>
     );
   }
-  return <UserForm mode="edit" user={user} />;
+  return <UserForm key={id} mode="edit" user={user} />;
 }

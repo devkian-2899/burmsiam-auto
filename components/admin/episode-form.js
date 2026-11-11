@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { EPISODE_POST_TYPE_OPTIONS, episodePostTypeLabel } from "../../lib/catalog-rules.mjs";
+import { finishAdminEdit } from "./finish-admin-edit";
 import { readPhoto } from "./read-photo";
 
 const PLATFORMS = [
@@ -54,7 +54,6 @@ function fromRecord(record) {
 }
 
 export function EpisodeForm({ mode, record }) {
-  const router = useRouter();
   const [values, setValues] = useState(record ? fromRecord(record) : empty);
   const [programs, setPrograms] = useState([]);
   const [seasons, setSeasons] = useState([]);
@@ -135,8 +134,7 @@ export function EpisodeForm({ mode, record }) {
       return;
     }
     if (mode === "edit") {
-      router.push("/admin/episodes/add");
-      router.refresh();
+      finishAdminEdit("/admin/episodes/add");
       return;
     }
     setValues(empty);
@@ -152,8 +150,7 @@ export function EpisodeForm({ mode, record }) {
       setConfirmDelete(false);
       return;
     }
-    router.push("/admin/episodes/add");
-    router.refresh();
+    finishAdminEdit("/admin/episodes/add");
   }
 
   return (

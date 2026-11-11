@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { finishAdminEdit } from "./finish-admin-edit";
 import { readPhoto } from "./read-photo";
 
 const empty = { photo: "", link: "" };
 
 export function SlideForm({ mode, record }) {
-  const router = useRouter();
   const [values, setValues] = useState(record ? { ...empty, ...record } : empty);
   const [notice, setNotice] = useState("");
   const [pending, setPending] = useState(false);
@@ -47,8 +46,7 @@ export function SlideForm({ mode, record }) {
       return;
     }
     if (mode === "edit") {
-      router.push("/admin/content/slides");
-      router.refresh();
+      finishAdminEdit("/admin/content/slides");
       return;
     }
     setValues(empty);
@@ -64,8 +62,7 @@ export function SlideForm({ mode, record }) {
       setConfirmDelete(false);
       return;
     }
-    router.push("/admin/content/slides");
-    router.refresh();
+    finishAdminEdit("/admin/content/slides");
   }
 
   return (

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { roles } from "../../content/admin-users";
+import { finishAdminEdit } from "./finish-admin-edit";
 
 const empty = {
   name: "",
@@ -16,7 +16,6 @@ const empty = {
 };
 
 export function UserForm({ mode, user }) {
-  const router = useRouter();
   const starting = user ? { ...empty, ...user, password: "", confirm: "" } : empty;
   const [values, setValues] = useState(starting);
   const [notice, setNotice] = useState("");
@@ -44,8 +43,7 @@ export function UserForm({ mode, user }) {
       return;
     }
     if (mode === "edit") {
-      router.push("/admin/users");
-      router.refresh();
+      finishAdminEdit("/admin/users");
       return;
     }
     setValues(empty);
@@ -61,8 +59,7 @@ export function UserForm({ mode, user }) {
       setConfirmDelete(false);
       return;
     }
-    router.push("/admin/users");
-    router.refresh();
+    finishAdminEdit("/admin/users");
   }
 
   return (

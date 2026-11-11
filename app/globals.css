@@ -663,12 +663,14 @@ a.latest-slide {
   text-align: center;
 }
 
-.episode-program-mark {
-  display: block;
-  width: clamp(1.65rem, 4.5vw, 2.1rem);
-  height: clamp(1.65rem, 4.5vw, 2.1rem);
+.episode-program-abbr {
   margin: 0 auto 0.4rem;
-  object-fit: contain;
+  color: var(--cyan);
+  font-size: clamp(0.72rem, 1.3vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .episode-card h3 {

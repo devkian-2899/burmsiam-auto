@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { compareEpisodeNumbers, compareSeasonVolume } from "../../lib/catalog-rules.mjs";
 
 export function EpisodeList() {
   const [rows, setRows] = useState([]);
@@ -44,12 +45,20 @@ export function EpisodeList() {
 
   const visible = useMemo(() => {
     const needle = applied.query.trim().toLowerCase();
-    return rows.filter((row) => {
+    const next = rows.filter((row) => {
       if (applied.programId && row.programId !== applied.programId) return false;
       if (applied.seasonId && row.seasonId !== applied.seasonId) return false;
       if (!needle) return true;
       return `${row.programAbbr} ${row.seasonLabel} ${row.episode} ${row.title}`.toLowerCase().includes(needle);
     });
+    next.sort((left, right) => {
+      const seasonVolume = compareSeasonVolume(left.season, left.volume, right.season, right.volume);
+      if (seasonVolume !== 0) return seasonVolume;
+      const byEpisode = compareEpisodeNumbers(left.episode, right.episode);
+      if (byEpisode !== 0) return byEpisode;
+      return Number(left.id || 0) - Number(right.id || 0);
+    });
+    return next;
   }, [applied, rows]);
 
   async function remove(id) {
