@@ -84,6 +84,8 @@ export function EpisodeCard({ episode }) {
       <h3>{episode.title}</h3>
       <div className="episode-body">
         {episode.description ? <p className="episode-copy">{episode.description}</p> : null}
+      </div>
+      <div className="episode-footer">
         <SocialRow episode={episode} />
       </div>
     </article>
