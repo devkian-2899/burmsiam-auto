@@ -390,6 +390,40 @@ a.latest-slide {
   text-align: center;
 }
 
+.programs-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.programs-head h2 {
+  margin-bottom: 0;
+}
+
+.programs-all-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.52rem 1.35rem;
+  border: 1px solid rgba(88, 227, 227, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cyan);
+  font-size: clamp(0.8rem, 1.35vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.programs-all-link:hover {
+  border-color: var(--cyan);
+  background: rgba(88, 227, 227, 0.08);
+  color: #8ef0f0;
+}
+
 .program-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -624,9 +658,22 @@ a.latest-slide {
   object-fit: cover;
 }
 
+.episode-heading {
+  padding: 0.85rem 0.7rem 0.45rem;
+  text-align: center;
+}
+
+.episode-program-mark {
+  display: block;
+  width: clamp(1.65rem, 4.5vw, 2.1rem);
+  height: clamp(1.65rem, 4.5vw, 2.1rem);
+  margin: 0 auto 0.4rem;
+  object-fit: contain;
+}
+
 .episode-card h3 {
   margin: 0;
-  padding: 0.95rem 0.7rem 0.45rem;
+  padding: 0;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   font-weight: 500;
   text-align: center;

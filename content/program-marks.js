@@ -15,11 +15,21 @@ const ORDER = [
   "BSN",
 ];
 
-export const localProgramMarks = ORDER.map((abbr) => ({
-  name: abbr,
-  href: `/${abbr}`,
-  image: {
-    src: `/images/programs/${abbr}.png`,
-    srcSet: "",
+export const localProgramMarks = [
+  {
+    name: "All Episodes",
+    href: "/all-episodes",
+    image: {
+      src: "/images/main/logos.png",
+      srcSet: "",
+    },
   },
-}));
+  ...ORDER.map((abbr) => ({
+    name: abbr,
+    href: `/${abbr}`,
+    image: {
+      src: `/images/programs/${abbr}.png`,
+      srcSet: "",
+    },
+  })),
+];

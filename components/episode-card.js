@@ -81,7 +81,16 @@ export function EpisodeCard({ episode }) {
         <Photo src={episode.image} alt="" className="episode-photo-img" />
         <PostTypeBadge postType={episode.postType} />
       </div>
-      <h3>{episode.title}</h3>
+      <div className="episode-heading">
+        {episode.programIcon ? (
+          <Photo
+            src={episode.programIcon}
+            alt={episode.programAbbr || ""}
+            className="episode-program-mark"
+          />
+        ) : null}
+        <h3>{episode.title}</h3>
+      </div>
       <div className="episode-body">
         {episode.description ? <p className="episode-copy">{episode.description}</p> : null}
       </div>

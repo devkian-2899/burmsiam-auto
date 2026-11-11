@@ -19,7 +19,12 @@ export function Programs({ items }) {
   return (
     <section id="programs" className="programs">
       <div className="programs-inner">
-        <h2>OUR PROGRAM</h2>
+        <div className="programs-head">
+          <h2>OUR PROGRAM</h2>
+          <Link className="programs-all-link" href="/all-episodes">
+            View all episodes
+          </Link>
+        </div>
         {items.length === 0 ? <p className="program-empty">No programs yet.</p> : (
           <div className="program-list" tabIndex={0} aria-label="Our programs">
             {items.map((item, index) => (
